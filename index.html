@@ -1387,6 +1387,8 @@ loader.addEventListener('click', function() {
         });
 
         var lastProgress = -1;
+        var smoothProgress = 0;  // lerp target for buttery smooth motion
+        var LERP_FACTOR = 0.12;  // how fast smoothProgress catches up (0.05=slow, 0.2=snappy)
 
         function updateShowcase() {
             if (!showcaseVisible) return;
@@ -1394,7 +1396,15 @@ loader.addEventListener('click', function() {
 
             var scrolled = -wrapper.getBoundingClientRect().top;
             var maxScroll = cachedWrapperH - cachedViewH;
-            var progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+            var targetProgress = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+            // Lerp: smoothProgress glides toward targetProgress each frame
+            smoothProgress += (targetProgress - smoothProgress) * LERP_FACTOR;
+
+            // Snap if extremely close (avoid infinite tiny updates)
+            if (Math.abs(smoothProgress - targetProgress) < 0.0001) smoothProgress = targetProgress;
+
+            var progress = smoothProgress;
 
             // Skip only if progress is truly identical
             if (progress === lastProgress) return;
@@ -1412,8 +1422,6 @@ loader.addEventListener('click', function() {
             var translateX = -moveProgress * totalTravel;
             track.style.transform = "translateY(-50%) translateX(" + translateX + "px)";
 
-            // Compute card screen positions from translateX + cached offsets
-            // track CSS: left:100% => starts at viewport right edge
             var trackScreenLeft = cachedViewW + translateX;
 
             var centerX = cachedViewW / 2;
