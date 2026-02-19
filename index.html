@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorium X — The Ethical Blockchain</title>
+    <meta name="description" content="A security-first, post-quantum Layer 1 blockchain built for the long term. No hype, just verifiable work.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valoriumx-demo.netlify.app">
+    <meta property="og:title" content="Valorium X — The Ethical Blockchain">
+    <meta property="og:description" content="Post-quantum security. Solar-powered mining. Community-governed. A Layer 1 blockchain built for the future.">
+    <meta property="og:image" content="https://valoriumx-demo.netlify.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Valorium X">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Valorium X — The Ethical Blockchain">
+    <meta name="twitter:description" content="Post-quantum security. Solar-powered mining. Community-governed. Built for the future.">
+    <meta name="twitter:image" content="https://valoriumx-demo.netlify.app/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1771390557">
+    <!-- Lenis smooth scroll -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.css"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js"></script> -->
+    <!-- GSAP removed: loaded but never used (saves ~60KB) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script src="https://unpkg.com/@rive-app/webgl2@2.33.1"></script>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" preload="metadata" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LOADER — Click to Enter -->
+<div class="loader" id="loader">
+    <div class="loader-enter">
+        <span class="loader-enter-text">Click to Enter</span>
+    </div>
+</div>
+
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <span class="logo-v">V</span>ALORIUM <span class="logo-x">X</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#journey">How It Works</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#miners">Miners</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#community">Community</a>
+            <a href="#tech" class="nav-tech">Developers</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#community" class="nav-cta">Get Started</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <!-- Audio toggle -->
+    <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
+        <svg class="audio-icon audio-icon-off" id="audioIconOff" viewBox="0 0 24 24" fill="none" width="20" height="20">
+            <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="audio-icon audio-icon-on" id="audioIconOn" viewBox="0 0 24 24" fill="none" width="20" height="20" style="display:none">
+            <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+</nav>
+
+<!-- HERO — WebGL Sun Shader -->
+<header class="hero-header" id="heroHeader">
+    <canvas id="glcanvas"></canvas>
+
+    <img class="hero-logo" src="valorium-logo.png" alt="Valorium X" />
+    <div class="token-glow-overlay" id="tokenGlowOverlay"></div>
+    <canvas id="lightningCanvas" class="lightning-overlay"></canvas>
+    <div class="hero-brand" id="heroBrand">
+        <span class="brand-v">V</span><span class="brand-text">ALORIUM</span> <span class="brand-x">X</span>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-line"></div>
+        <div class="scroll-chevron"></div>
+    </div>
+</header>
+
+
+
+
+<!-- USER JOURNEY FLOW — metoro-style scattered pipeline -->
+<!-- HORIZONTAL SCROLL SHOWCASE -->
+<div class="showcase-wrapper" id="showcaseWrapper">
+    <div class="showcase-sticky">
+        <!-- Floating background keywords -->
+        <div class="showcase-keywords" aria-hidden="true">
+            <span class="skw" data-speed="-0.3" style="top:8%; left:5%;">Optical</span>
+            <span class="skw" data-speed="0.5" style="top:18%; right:8%;">Volumetric</span>
+            <span class="skw" data-speed="-0.2" style="top:72%; left:3%;">Bio-Inspired</span>
+            <span class="skw" data-speed="0.35" style="top:85%; right:10%;">Light-Speed</span>
+            <span class="skw" data-speed="-0.5" style="top:25%; right:25%;">Topology</span>
+            <span class="skw" data-speed="0.4" style="top:65%; left:25%;">Helix</span>
+            <span class="skw" data-speed="0.25" style="top:10%; left:40%;">Evolution</span>
+        </div>
+
+        <!-- Intro text (fades out as you scroll) -->
+        <div class="showcase-intro" id="showcaseIntro">
+            <span class="section-label">Technology</span>
+            <h2 class="showcase-title">Built Different.<br><span class="gradient-text">By Design.</span></h2>
+            <div class="showcase-scroll-hint">
+                <span>Scroll to explore</span>
+                <div class="showcase-mouse">
+                    <div class="showcase-mouse-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal track of cards -->
+        <div class="showcase-track" id="showcaseTrack">
+
+            <div class="showcase-slide showcase-slide-optical" data-speed="1">
+                <div class="hex-stack" id="hexStack">
+                    <div class="hex-stack-row">
+                        <div class="hex-cell"><canvas class="hex-cvs" id="hexCvs0"></canvas></div>
+                        <div class="hex-cell"><canvas class="hex-cvs" id="hexCvs1"></canvas></div>
+                    </div>
+                    <div class="hex-stack-row hex-stack-mid">
+                        <div class="hex-cell"><canvas class="hex-cvs" id="hexCvs2"></canvas></div>
+                    </div>
+                    <div class="hex-stack-row">
+                        <div class="hex-cell"><canvas class="hex-cvs" id="hexCvs3"></canvas></div>
+                        <div class="hex-cell"><canvas class="hex-cvs" id="hexCvs4"></canvas></div>
+                    </div>
+                </div>
+                <div class="optical-text">
+                    <h2 class="slide-title">Optical Matrix</h2>
+                    <p class="slide-sub">Light-speed data pathways</p>
+                </div>
+            </div>
+
+            <div class="showcase-slide showcase-slide-vst" data-speed="1.3">
+                <div class="vst-canvas-wrap" id="vstCanvasWrap">
+                    <canvas id="vstCanvas"></canvas>
+                </div>
+                <div class="vst-text">
+                    <h2 class="slide-title">Volumetric Structure<br>Theory</h2>
+                    <p class="slide-sub">3D blockchain topology</p>
+                </div>
+            </div>
+
+            <div class="showcase-slide showcase-slide-shield" data-speed="0.85">
+                
+                <h2 class="slide-title">Quantum-Ready</h2>
+                <p class="slide-sub">Post-quantum cryptography roadmap</p>
+            </div>
+
+            <div class="showcase-slide showcase-slide-autonomy" data-speed="1.15">
+                <div class="autonomy-label">Phase IV</div>
+                <h2 class="slide-title">Progressive<br>Autonomy</h2>
+                <div class="autonomy-divider"></div>
+                <p class="slide-sub">AI-assisted consensus that evolves</p>
+                <div class="autonomy-tags">
+                    <span class="auto-tag">VIC Consensus</span>
+                    <span class="auto-tag">Adaptive</span>
+                    <span class="auto-tag">Self-Evolving</span>
+                </div>
+            </div>
+
+            <!-- Final excitement CTA slide -->
+            <div class="showcase-slide showcase-slide-divein" data-speed="1.05">
+                <h2 class="slide-title divein-title">Now Let's<br><span class="gradient-text">Dive In.</span></h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ABOUT / WHY — Accordion Slider (CodePen split) -->
+<section class="section" id="about">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">The Big Picture</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Three Problems Nobody <span class="gradient-text">Has Solved Yet</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Every major blockchain today has the same fatal flaws. Valorium X was designed from scratch to fix all three at once. That has never been done before.</p>
+    </div>
+
+    <div class="slider-container" data-anim="scale-in" data-delay="3">
+        <div class="now-showing">Explore the Problems</div>
+
+        <div class="accordion-slider">
+            <div class="slide" style="background-image: url('quantum-reactor.png')">
+                <div class="slide-content">
+                    <div class="slide-number">01</div>
+                    <div class="car-brand">Post-Quantum Security</div>
+                    <div class="car-name">Quantum Computers Will Break Bitcoin</div>
+                    <div class="car-subtitle">Next-Generation Cryptography Built From Day One</div>
+                    <div class="car-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Threat:</span>
+                            <span class="spec-value">Quantum computers crack RSA &amp; ECC</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Timeline:</span>
+                            <span class="spec-value">5-10 years (Google, IBM, China)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Bitcoin:</span>
+                            <span class="spec-value">Vulnerable overnight</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Valorium X:</span>
+                            <span class="spec-value">Lattice-based crypto, immune</span>
+                        </div>
+                    </div>
+                    <div class="performance-badges">
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>Hack-Proof</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>Future-Ready</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>NIST Compliant</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-button"></div>
+            </div>
+
+            <div class="slide" style="background-image: url('energy-wind.png')">
+                <div class="slide-content">
+                    <div class="slide-number">02</div>
+                    <div class="car-brand">Energy Efficiency</div>
+                    <div class="car-name">Mining Should Not Cost a Fortune</div>
+                    <div class="car-subtitle">25 Watts &mdash; Less Than a Light Bulb</div>
+                    <div class="car-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Bitcoin Mining:</span>
+                            <span class="spec-value">1,500W per machine</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">VRX Mining:</span>
+                            <span class="spec-value">25W per miner</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Solar Ready:</span>
+                            <span class="spec-value">One $100 panel is enough</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Electricity Cost:</span>
+                            <span class="spec-value">Pennies per month</span>
+                        </div>
+                    </div>
+                    <div class="performance-badges">
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>25 Watts</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>Solar Powered</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>Plug &amp; Play</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-button"></div>
+            </div>
+
+            <div class="slide" style="background-image: url('governance-suits.png')">
+                <div class="slide-content">
+                    <div class="slide-number">03</div>
+                    <div class="car-brand">Fair Governance</div>
+                    <div class="car-name">No More Billionaire Takeovers</div>
+                    <div class="car-subtitle">One Person, One Vote &mdash; By Design</div>
+                    <div class="car-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Bitcoin:</span>
+                            <span class="spec-value">Rich buy more hash power</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Ethereum:</span>
+                            <span class="spec-value">Rich stake more, control more</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Valorium X:</span>
+                            <span class="spec-value">1 miner = 1 vote, always</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Company:</span>
+                            <span class="spec-value">Registered in Canada, real people</span>
+                        </div>
+                    </div>
+                    <div class="performance-badges">
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>1:1 Voting</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>No Whales</span>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon"></div>
+                            <span>Transparent</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-button"></div>
+            </div>
+        </div>
+
+        <button class="navigation-arrows nav-prev">&lsaquo;</button>
+        <button class="navigation-arrows nav-next">&rsaquo;</button>
+    </div>
+</section>
+
+
+<!-- HOW IT WORKS — 3-Column DNA Layout -->
+<section class="section section-dark" id="how">
+    <div class="container dna-layout">
+
+        <!-- LEFT: Heading + Description -->
+        <div class="dna-col-left" data-anim="fade-right">
+            <span class="section-label">How It Works</span>
+            <h2 class="dna-heading">Built Like<br><span class="gradient-text">DNA Itself</span></h2>
+            <p class="dna-desc">Your DNA uses two intertwined strands that constantly check each other for errors &mdash; that is how life stays alive. Valorium X works the same way. Two chains watching each other, 24/7.</p>
+
+            <div class="dna-callout">
+                <span class="dna-callout-dot"></span>
+                <strong>Dual-Helix Security</strong>
+            </div>
+            <p class="dna-callout-text">Nature perfected this design over billions of years. We just applied it to money.</p>
+        </div>
+
+        <!-- CENTER: DNA Helix in rounded container -->
+        <div class="dna-col-center" data-anim="scale-in" data-delay="1">
+            <div class="dna-container">
+                <div class="helix-visual">
+                    <div class="dna">
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                        <div class="link"><div></div><div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Numbered Steps -->
+        <div class="dna-col-right">
+            <div class="dna-step" data-anim="fade-left" data-delay="1">
+                <h3 class="dna-step-title">Your Money Chain</h3>
+                <p class="dna-step-desc">Every transaction gets recorded in an unbreakable sequence &mdash; like a receipt book where every page is glued to the next.</p>
+            </div>
+            <div class="dna-step" data-anim="fade-left" data-delay="2">
+                <h3 class="dna-step-title">The Security Guard</h3>
+                <p class="dna-step-desc">A second independent chain watches the first one. A hacker would need to break both simultaneously &mdash; practically impossible.</p>
+            </div>
+            <div class="dna-step" data-anim="fade-left" data-delay="3">
+                <h3 class="dna-step-title">Locked Like DNA</h3>
+                <p class="dna-step-desc">The two chains are physically interlocked. You cannot change one without snapping the other. No other blockchain has this.</p>
+            </div>
+            <div class="dna-step" data-anim="fade-left" data-delay="4">
+                <h3 class="dna-step-title">Real Work Mining</h3>
+                <p class="dna-step-desc">Valorium X miners do useful computation that strengthens the network. You accumulate tokens AND contribute something real.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROGRESSIVE AUTONOMY — Full Rive section (cinematic reveal) -->
+<section class="rive-section" id="autonomy-deep">
+    <div class="rive-reveal-glow"></div>
+    <div class="rive-reveal-wrap">
+        <canvas id="riveAiCanvas"></canvas>
+    </div>
+</section>
+<script>
+// Rive AI animation — mouse-tracking works before cursor reaches canvas
+(function() {
+    var section = document.getElementById('autonomy-deep');
+    var canvas  = document.getElementById('riveAiCanvas');
+    if (!section || !canvas) return;
+
+    var riveInstance = null;
+    var revealed = false;
+    var hasEnteredCanvas = false;
+
+    // --- Scroll-triggered cinematic reveal ---
+    // Mobile: use lower threshold so reveal triggers earlier on small viewports
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var revealThreshold = isMobile ? 0.05 : 0.15;
+
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !revealed) {
+                revealed = true;
+                section.classList.add('rive-revealed');
+                revealObserver.unobserve(section);
+                if (riveInstance) playRive(riveInstance);
+            }
+        });
+    }, { threshold: revealThreshold });
+
+    revealObserver.observe(section);
+
+    // --- Init Rive ---
+    function initRive() {
+        if (typeof rive === 'undefined') return;
+
+        riveInstance = new rive.Rive({
+            src: 'ai.riv',
+            canvas: canvas,
+            autoplay: true,
+            fit: rive.Fit.Cover,
+            alignment: rive.Alignment.Center,
+            onLoad: function() {
+                console.log('Rive AI loaded');
+                riveInstance.resizeDrawingSurfaceToCanvas();
+                // If already revealed, play the state machine now
+                if (revealed) playRive(riveInstance);
+            },
+            onLoadError: function(e) {
+                console.log('Rive load error:', e);
+            }
+        });
+
+        onResizeDebounced(function() {
+            if (riveInstance) riveInstance.resizeDrawingSurfaceToCanvas();
+        });
+    }
+
+    function playRive(r) {
+        var sms = r.stateMachineNames;
+        if (sms && sms.length > 0) {
+            r.play(sms[0]);
+        } else {
+            var anims = r.animationNames;
+            if (anims && anims.length > 0) r.play(anims[0]);
+        }
+    }
+
+    // --- Forward global mouse to Rive canvas (throttled via rAF) ---
+    var pendingMouseX = 0, pendingMouseY = 0, mouseRafPending = false;
+    document.addEventListener('mousemove', function(e) {
+        if (!riveInstance) return;
+        if (e.target === canvas) { hasEnteredCanvas = true; return; }
+        pendingMouseX = e.clientX;
+        pendingMouseY = e.clientY;
+        if (mouseRafPending) return;
+        mouseRafPending = true;
+        requestAnimationFrame(function() {
+            mouseRafPending = false;
+            if (!hasEnteredCanvas) {
+                hasEnteredCanvas = true;
+                canvas.dispatchEvent(new MouseEvent('mouseover', {
+                    clientX: pendingMouseX, clientY: pendingMouseY, bubbles: true, cancelable: true
+                }));
+            }
+            canvas.dispatchEvent(new MouseEvent('mousemove', {
+                clientX: pendingMouseX, clientY: pendingMouseY, bubbles: true, cancelable: true
+            }));
+        });
+    });
+    canvas.addEventListener('mouseout', function() { hasEnteredCanvas = false; });
+
+    if (document.readyState === 'complete') {
+        initRive();
+    } else {
+        window.addEventListener('load', initRive);
+    }
+})();
+</script>
+
+<!-- QUANTUM-PROOF FROM DAY ONE -->
+<section class="section qp-section" id="quantum">
+    <div class="container">
+        <div class="qp-layout">
+            <div class="qp-visual" data-anim="scale-in">
+                <div class="qp-shield-wrap">
+                    <div class="qp-shield">
+                        <svg viewBox="0 0 120 140" class="qp-shield-svg">
+                            <defs>
+                                <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#40d8ff"/>
+                                    <stop offset="100%" stop-color="#0090ff"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M60 10 L110 35 L110 80 C110 105 85 125 60 135 C35 125 10 105 10 80 L10 35 Z" fill="none" stroke="url(#shieldGrad)" stroke-width="2" opacity="0.6"/>
+                            <path d="M60 20 L100 40 L100 78 C100 98 80 115 60 123 C40 115 20 98 20 78 L20 40 Z" fill="none" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.3"/>
+                            <text x="60" y="78" text-anchor="middle" fill="url(#shieldGrad)" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="700">QR</text>
+                        </svg>
+                    </div>
+                    <div class="qp-ring qp-ring-1"></div>
+                    <div class="qp-ring qp-ring-2"></div>
+                </div>
+            </div>
+            <div class="qp-content" data-anim="fade-left" data-delay="1">
+                <span class="section-label">Future-Proof Security</span>
+                <h2 class="section-title">Quantum-Proof<br><span class="gradient-text">From Day One</span></h2>
+                <p class="qp-desc">Most blockchains will break when quantum computers arrive. They were built with 20-year-old cryptography. ValoriumX was designed from scratch with post-quantum algorithms &mdash; the same ones governments use to protect classified data.</p>
+                <div class="qp-points">
+                    <div class="qp-point">
+                        <span class="qp-point-icon">&#9670;</span>
+                        <div>
+                            <strong>CRYSTALS-Dilithium Signatures</strong>
+                            <p>Mathematically immune to quantum attacks</p>
+                        </div>
+                    </div>
+                    <div class="qp-point">
+                        <span class="qp-point-icon">&#9670;</span>
+                        <div>
+                            <strong>No Migration Needed</strong>
+                            <p>Built in from genesis block &mdash; not bolted on later</p>
+                        </div>
+                    </div>
+                    <div class="qp-point">
+                        <span class="qp-point-icon">&#9670;</span>
+                        <div>
+                            <strong>Your Money Stays Safe</strong>
+                            <p>Even when quantum computers become mainstream</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- REAL COMPANY. REAL PEOPLE. -->
+<section class="section trust-section" id="trust">
+    <div class="container">
+        <div class="trust-center" data-anim="fade-up">
+            <span class="section-label">Trust &amp; Transparency</span>
+            <h2 class="section-title">Real Company.<br><span class="gradient-text">Real People.</span></h2>
+            <p class="trust-desc">ValoriumX isn't anonymous founders hiding behind a Discord handle. It's a registered Canadian company with named leadership, public code, and zero tokens sold to insiders.</p>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card" data-anim="fade-up" data-delay="1">
+                <div class="trust-card-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 7v1a3 3 0 003 3h0a3 3 0 003-3V7m0 0v1a3 3 0 003 3h0a3 3 0 003-3V7m0 0v1a3 3 0 003 3h0a3 3 0 003-3V7M6 21V11m12 10V11"/></svg>
+                </div>
+                <h3>Registered in Canada</h3>
+                <p>ValoriumX Inc. is a legally incorporated company &mdash; not an offshore shell or anonymous DAO.</p>
+            </div>
+            <div class="trust-card" data-anim="fade-up" data-delay="2">
+                <div class="trust-card-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <h3>100% Open Source</h3>
+                <p>Every line of code is public on GitHub. No hidden backdoors, no secret tokenomics, no trust-me promises.</p>
+            </div>
+            <div class="trust-card" data-anim="fade-up" data-delay="3">
+                <div class="trust-card-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>No Token Sale</h3>
+                <p>Zero pre-mine. Zero VC allocation. Every single VRX token is earned through mining &mdash; not bought.</p>
+            </div>
+            <div class="trust-card" data-anim="fade-up" data-delay="4">
+                <div class="trust-card-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3>1 Person = 1 Vote</h3>
+                <p>Governance is constitutional. No whale can buy control. Every participant has an equal voice in the network's future.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="flow-section" id="journey">
+
+    <!-- Constellation background dots -->
+    <canvas class="flow-constellation" id="flowConstellation"></canvas>
+
+    <!-- Elbow connector SVG -->
+    <svg class="flow-elbow-svg" id="flowElbowSvg" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+
+
+
+    <!-- HEADER -->
+    <div class="flow-header" data-anim="blur-in">
+        <span class="section-label">The Basics</span>
+        <h2 class="section-title">We Made Mining Accessible to <span class="gradient-text">Everyone</span></h2>
+    </div>
+
+    <!-- ROW 1: Left text + Right "Unbox" terminal card -->
+    <div class="flow-row flow-row-1">
+        <!-- Handwritten annotation -->
+        <div class="flow-annotation fa-1" data-anim="fade-up" data-delay="2">
+            <span class="fa-text">step 1: plug it in</span>
+            <svg class="fa-arrow fa-arrow-down-left" viewBox="0 0 60 50" fill="none"><path d="M52 5 C48 18, 35 30, 18 38" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M24 34 L17 39 L23 43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="flow-blurb flow-blurb-left" data-anim="fade-right">
+            <h3 class="flow-blurb-title">Zero Setup. <span class="flow-highlight-cyan">Instant Mining.</span></h3>
+            <p class="flow-blurb-sub">One plug, that's it. No jargon, no PhD required.</p>
+            <ul class="flow-checklist-v2">
+                <li><span class="fcv2-icon"></span><strong>Plug into any wall outlet</strong></li>
+                <li><span class="fcv2-icon"></span><strong>Connect to your WiFi</strong></li>
+                <li><span class="fcv2-icon"></span><strong>Zero technical setup</strong></li>
+            </ul>
+        </div>
+        <div class="flow-node flow-node-terminal" data-anim="fade-left" data-delay="1" id="fn1">
+            <div class="fn-titlebar">
+                <span class="fn-dot fn-dot-r"></span>
+                <span class="fn-dot fn-dot-y"></span>
+                <span class="fn-dot fn-dot-g"></span>
+                <span class="fn-titlebar-text">vrx-miner &mdash; setup</span>
+            </div>
+            <div class="fn-body">
+                <div class="fn-line"><span class="fn-prompt">$</span> plug in VRX Miner Lite</div>
+                <div class="fn-line fn-line-ok"><span class="fn-check">&#10003;</span> Power: 25W &mdash; less than a light bulb</div>
+                <div class="fn-line fn-line-ok"><span class="fn-check">&#10003;</span> WiFi connected</div>
+                <div class="fn-line fn-line-ok"><span class="fn-check">&#10003;</span> Network discovered: 14,203 peers</div>
+                <div class="fn-line fn-cursor"><span class="fn-prompt">$</span> mining started <span class="fn-blink">_</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOW LABEL -->
+    <div class="flow-path-label" data-anim="fade-up">
+        <span id="fpl1">Miner connects to decentralized mesh</span>
+    </div>
+
+    <!-- ROW 2: Left "Network" dashboard card + Right text -->
+    <div class="flow-row flow-row-2">
+        <!-- Handwritten annotation -->
+        <div class="flow-annotation fa-2" data-anim="fade-up" data-delay="2">
+            <span class="fa-text">step 2: it joins the network</span>
+            <svg class="fa-arrow fa-arrow-down-right" viewBox="0 0 60 50" fill="none"><path d="M8 5 C12 18, 25 30, 42 38" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M36 34 L43 39 L37 43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="flow-node flow-node-dashboard" data-anim="fade-right" data-delay="1" id="fn2">
+            <div class="fn-titlebar fn-titlebar-dark">
+                <span class="fn-badge">LIVE</span>
+                <span class="fn-titlebar-text">Valorium Network</span>
+            </div>
+            <div class="fn-body fn-body-grid">
+                <div class="fn-metric">
+                    <span class="fn-metric-val fn-metric-cyan">14,203</span>
+                    <span class="fn-metric-label">Active Miners</span>
+                </div>
+                <div class="fn-metric">
+                    <span class="fn-metric-val fn-metric-gold">2 Chains</span>
+                    <span class="fn-metric-label">Dual-Helix</span>
+                </div>
+                <div class="fn-metric">
+                    <span class="fn-metric-val fn-metric-cyan">~0.4s</span>
+                    <span class="fn-metric-label">Block Time</span>
+                </div>
+                <div class="fn-metric">
+                    <span class="fn-metric-val fn-metric-gold">99.97%</span>
+                    <span class="fn-metric-label">Uptime</span>
+                </div>
+            </div>
+        </div>
+        <div class="flow-blurb flow-blurb-right" data-anim="fade-left">
+            <h3 class="flow-blurb-title">Two Chains. <span class="flow-highlight-cyan">Unbreakable.</span></h3>
+            <p class="flow-blurb-sub">Dual-Helix security &mdash; like DNA strands cross-checking for errors.</p>
+            <ul class="flow-checklist-v2">
+                <li><span class="fcv2-icon"></span><strong>Two independent chains watch each other 24/7</strong></li>
+                <li><span class="fcv2-icon"></span><strong>Both must be broken simultaneously to attack</strong></li>
+                <li><span class="fcv2-icon"></span><strong>Practically impossible to compromise</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FLOW LABEL -->
+    <div class="flow-path-label" data-anim="fade-up">
+        <span id="fpl2">Real optical computation begins</span>
+    </div>
+
+    <!-- ROW 3: Big statement + Processing card -->
+    <div class="flow-row flow-row-3">
+        <!-- Handwritten annotation -->
+        <div class="flow-annotation fa-3" data-anim="fade-up" data-delay="2">
+            <span class="fa-text">step 3: real work happens here</span>
+            <svg class="fa-arrow fa-arrow-down-left" viewBox="0 0 60 50" fill="none"><path d="M52 5 C48 18, 35 30, 18 38" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M24 34 L17 39 L23 43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="flow-blurb flow-blurb-left" data-anim="fade-right">
+            <h3 class="flow-blurb-title">Useful Work, not <span class="flow-strike">Puzzle-Solving</span></h3>
+            <p class="flow-blurb-sub">Unlike Bitcoin's wasted energy, your miner does real optical computation.</p>
+            <ul class="flow-checklist-v2">
+                <li><span class="fcv2-icon"></span><strong>Processes real data that actually matters</strong></li>
+                <li><span class="fcv2-icon"></span><strong>25W power draw &mdash; solar compatible</strong></li>
+                <li><span class="fcv2-icon"></span><strong>Strengthens the network with every block</strong></li>
+            </ul>
+        </div>
+        <div class="flow-node flow-node-process" data-anim="fade-left" data-delay="1" id="fn3">
+            <div class="fn-titlebar">
+                <span class="fn-dot fn-dot-r"></span>
+                <span class="fn-dot fn-dot-y"></span>
+                <span class="fn-dot fn-dot-g"></span>
+                <span class="fn-titlebar-text">optical-processor</span>
+            </div>
+            <div class="fn-body">
+                <div class="fn-line"><span class="fn-prompt">&gt;</span> Processing block #4,821,093</div>
+                <div class="fn-line fn-line-dim"><span class="fn-prompt">&gt;</span> Optical matrix: 128-bit validation</div>
+                <div class="fn-line fn-line-dim"><span class="fn-prompt">&gt;</span> Energy: 25W (solar compatible)</div>
+                <div class="fn-progress">
+                    <div class="fn-progress-bar"></div>
+                </div>
+                <div class="fn-line fn-line-ok"><span class="fn-check">&#10003;</span> Block validated &mdash; accumulated: 3.2 $VQXAI</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOW LABEL -->
+    <div class="flow-path-label flow-path-label-gold" data-anim="fade-up">
+        <span id="fpl3">Tokens accumulate automatically</span>
+    </div>
+
+    <!-- ROW 4: Wallet card + Final statement -->
+    <div class="flow-row flow-row-4">
+        <!-- Handwritten annotation -->
+        <div class="flow-annotation fa-4" data-anim="fade-up" data-delay="2">
+            <span class="fa-text">step 4: tokens accumulate</span>
+            <svg class="fa-arrow fa-arrow-down-right" viewBox="0 0 60 50" fill="none"><path d="M8 5 C12 18, 25 30, 42 38" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M36 34 L43 39 L37 43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="flow-node flow-node-wallet" data-anim="fade-right" data-delay="1" id="fn4">
+            <div class="fn-wallet-header">
+                <div class="fn-wallet-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#F59E0B" stroke-width="1.5"/><text x="16" y="20" text-anchor="middle" fill="#F59E0B" font-family="Space Grotesk" font-size="10" font-weight="700">V</text></svg>
+                </div>
+                <div>
+                    <div class="fn-wallet-title">$VQXAI Wallet</div>
+                    <div class="fn-wallet-addr">0x7f2a...e91c</div>
+                </div>
+            </div>
+            <div class="fn-wallet-balance">
+                <span class="fn-wallet-amount">1,247.83</span>
+                <span class="fn-wallet-ticker">$VQXAI</span>
+            </div>
+            <div class="fn-wallet-row">
+                <span>Today</span>
+                <span class="fn-wallet-gain">+12.4 $VQXAI</span>
+            </div>
+            <div class="fn-wallet-row">
+                <span>This month</span>
+                <span class="fn-wallet-gain">+384.2 $VQXAI</span>
+            </div>
+        </div>
+        <div class="flow-blurb flow-blurb-right flow-blurb-final" data-anim="fade-left">
+            <h3 class="flow-blurb-title">Accumulate while you sleep.</h3>
+            <ul class="flow-checklist flow-checklist-gold">
+                <li><span class="fc-dot fc-dot-gold"></span>No staking complexity</li>
+                <li><span class="fc-dot fc-dot-gold"></span>No gas wars</li>
+                <li><span class="fc-dot fc-dot-gold"></span>No middlemen</li>
+                <li><span class="fc-dot fc-dot-gold"></span>Community-governed &mdash; you vote on the future</li>
+            </ul>
+            <a href="#miners" class="flow-cta-btn">See the Miners &rarr;</a>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+<!-- ECOSYSTEM -->
+<section class="section" id="ecosystem">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">Ecosystem</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Not Just a Coin. <span class="gradient-text">An Entire World.</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Most crypto projects give you a token and say "good luck." Valorium X is building a complete ecosystem &mdash; wallet, marketplace, mining hardware, education &mdash; everything you need, all under one roof.</p>
+
+        <div class="eco-grid">
+            <div class="eco-card" data-anim="scale-in" data-delay="1">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 13h24" stroke="currentColor" stroke-width="1.5"/><circle cx="22" cy="19" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3>Wallet</h3>
+                <p>Your money, your control. A quantum-proof wallet that is as easy to use as a banking app but impossible to hack &mdash; even by future supercomputers.</p>
+            </div>
+            <div class="eco-card" data-anim="scale-in" data-delay="2">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><rect x="6" y="4" width="20" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 10h12M10 14h8M10 18h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <h3>Marketplace</h3>
+                <p>Buy, sell, and trade directly with other people &mdash; no middleman taking a cut. Like Amazon, but nobody owns the store. The savings go back to you.</p>
+            </div>
+            <div class="eco-card" data-anim="scale-in" data-delay="3">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M13 17l-3 4M19 17l3 4" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3>Neural Nodes</h3>
+                <p>AI-powered network nodes that make the blockchain smarter over time. The more people join, the more intelligent and efficient the whole system becomes.</p>
+            </div>
+            <div class="eco-card" data-anim="scale-in" data-delay="4">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l12 8v8l-12 8-12-8V12l12-8z" stroke="currentColor" stroke-width="1.5"/><path d="M16 4v12m0 0l12-4m-12 4L4 12m12 8v8" stroke="currentColor" stroke-width="1.5" opacity="0.4"/></svg>
+                </div>
+                <h3>Validators</h3>
+                <p>Help verify transactions and accumulate tokens for it. No expensive equipment needed &mdash; if you have a computer, you can be part of securing the network and contributing to it.</p>
+            </div>
+            <div class="eco-card" data-anim="scale-in" data-delay="5">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><path d="M4 26V10l6-6h12l6 6v16H4z" stroke="currentColor" stroke-width="1.5"/><path d="M12 16l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 10v10" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3>Miners</h3>
+                <p>Real physical devices you can hold in your hand. Plug them in, they start accumulating. At 25 watts, your electricity bill barely moves. These are not vaporware &mdash; they are in stock right now.</p>
+            </div>
+            <div class="eco-card" data-anim="scale-in" data-delay="6">
+                <div class="eco-icon">
+                    <svg viewBox="0 0 32 32" fill="none"><path d="M6 28V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v20" stroke="currentColor" stroke-width="1.5"/><path d="M2 28h28" stroke="currentColor" stroke-width="1.5"/><path d="M12 12h8M12 16h6M12 20h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <h3>Academy</h3>
+                <p>Never touched crypto before? No problem. The Academy teaches you everything from zero &mdash; how mining works, how wallets work, how to get started. Built for real humans, not developers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- MINERS -->
+<section class="section section-dark" id="miners">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">Hardware</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Your Personal <span class="gradient-text-gold">Mining Rig</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Remember when Bitcoin was new and you could mine it on your laptop? That window closed years ago. With Valorium X, that window is open <strong>right now</strong>. These are the earliest days &mdash; and the miners are already built.</p>
+
+        <div class="miners-grid-3d">
+            <!-- CARD 1: VRX Miner Lite -->
+            <div class="miner-card-3d" data-anim="fade-left" data-delay="1">
+                <div class="mc3d-overflow">
+                    <div class="mc3d-model">
+                        <img src="miner-vrx.png" alt="VRX Miner Lite" class="mc3d-miner-img" draggable="false">
+                    </div>
+                </div>
+                <div class="mc3d-glass">
+                    <div class="gradient-blur-3d"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
+                <div class="mc3d-content">
+                    <div class="miner-badge">Residential</div>
+                    <h3>VRX Miner Lite</h3>
+                    <p class="mc3d-tagline">Less power than a light bulb</p>
+                    <ul class="mc3d-specs">
+                        <li><span>Power</span><strong>25W</strong></li>
+                        <li><span>Noise</span><strong>Silent</strong></li>
+                        <li><span>Solar</span><strong>Yes</strong></li>
+                        <li><span>Setup</span><strong>Plug & Play</strong></li>
+                    </ul>
+                    <p class="mc3d-note">Plug it in and forget about it. Costs pennies per month in electricity &mdash; or zero if you connect a small solar panel.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2: VRX Miner Pro (featured) -->
+            <div class="miner-card-3d miner-card-3d-featured" data-anim="fade-right" data-delay="2">
+                <div class="mc3d-overflow">
+                    <div class="mc3d-model">
+                        <img src="miner-vrx.png" alt="VRX Miner Pro" class="mc3d-miner-img" draggable="false">
+                    </div>
+                </div>
+                <div class="mc3d-glass">
+                    <div class="gradient-blur-3d"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
+                <div class="mc3d-content">
+                    <div class="miner-badge">Semi-Pro</div>
+                    <h3>VRX Miner Pro</h3>
+                    <p class="mc3d-tagline">Maximum output, minimal footprint</p>
+                    <ul class="mc3d-specs">
+                        <li><span>Power</span><strong>67W</strong></li>
+                        <li><span>Noise</span><strong>Low</strong></li>
+                        <li><span>Solar</span><strong>Yes</strong></li>
+                        <li><span>Setup</span><strong>Plug & Play</strong></li>
+                    </ul>
+                    <p class="mc3d-note">Stack a few of these with a standard solar setup and you have a mini mining farm running on pure sunlight. Zero cost, pure profit.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="solar-callout" data-anim="fade-up" data-delay="3">
+            <div class="solar-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M9.9 9.9l5.6 5.6M32.5 32.5l5.6 5.6M9.9 38.1l5.6-5.6M32.5 15.5l5.6-5.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="solar-text">
+                <h3>The Solar Mining Revolution</h3>
+                <p>A single $100 solar panel produces enough energy to power a VRX miner 24/7 with energy to spare. Think about that &mdash; a one-time purchase of a panel, and you mine crypto for free, forever. Now imagine what a field of solar panels and hundreds of miners could do. This is not a theory. The math works today.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">Roadmap</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Where This Is <span class="gradient-text">Going</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Valorium X is building methodically &mdash; no shortcuts, no empty promises. Every phase unlocks real value. And right now, you are looking at the ground floor.</p>
+
+        <div class="timeline">
+            <div class="timeline-item active" data-anim="fade-left" data-delay="1">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-phase">Phase 1 &mdash; Foundation</span>
+                    <h3>Building the Foundation</h3>
+                    <ul>
+                        <li>Core blockchain architecture &mdash; built from scratch in Rust</li>
+                        <li>New consensus mechanism (CIP) &mdash; nothing like this exists elsewhere</li>
+                        <li>Double-helix ledger &mdash; bio-inspired security breakthrough</li>
+                        <li>Mining hardware designed and in production</li>
+                        <li>Early community forming &mdash; this is where you are right now</li>
+                    </ul>
+                    <span class="timeline-status status-active">In Progress</span>
+                </div>
+            </div>
+            <div class="timeline-item" data-anim="fade-right" data-delay="2">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-phase">Phase 2 &mdash; Infrastructure</span>
+                    <h3>The Network Goes Live</h3>
+                    <ul>
+                        <li>Testnet launch &mdash; first public test of the network</li>
+                        <li>Mining software release &mdash; your miner starts accumulating</li>
+                        <li>Wallet beta &mdash; store and send VRX</li>
+                        <li>Independent security audits &mdash; third-party verification</li>
+                        <li>Validator onboarding &mdash; more ways to participate</li>
+                    </ul>
+                    <span class="timeline-status">Upcoming</span>
+                </div>
+            </div>
+            <div class="timeline-item" data-anim="fade-left" data-delay="3">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-phase">Phase 3 &mdash; Expansion</span>
+                    <h3>The Floodgates Open</h3>
+                    <ul>
+                        <li>Mainnet launch &mdash; the real network goes live</li>
+                        <li>Marketplace opens &mdash; buy, sell, trade with VRX</li>
+                        <li>Neural Nodes &mdash; AI-powered network intelligence</li>
+                        <li>Academy &mdash; onboarding the next million users</li>
+                        <li>Exchange listings &mdash; VRX becomes tradeable worldwide</li>
+                    </ul>
+                    <span class="timeline-status">Planned</span>
+                </div>
+            </div>
+            <div class="timeline-item" data-anim="fade-right" data-delay="4">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-phase">Phase 4 &mdash; Maturity</span>
+                    <h3>World Stage</h3>
+                    <ul>
+                        <li>Cross-chain bridges &mdash; connect with Bitcoin, Ethereum, and more</li>
+                        <li>Enterprise partnerships &mdash; real-world business adoption</li>
+                        <li>Full DAO governance &mdash; the community runs the show</li>
+                        <li>Smart contracts &mdash; build anything on Valorium X</li>
+                        <li>Global expansion &mdash; millions of users, thousands of miners</li>
+                    </ul>
+                    <span class="timeline-status">Future</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section class="section section-dark" id="governance">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">Governance</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Crypto The Way <span class="gradient-text">It Should Be</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Remember why people got excited about crypto in the first place? Freedom from centralized control. Transparency. Fairness. Most projects lost that vision. Valorium X brings it back.</p>
+
+        <div class="gov-grid">
+            <div class="gov-card" data-anim="fade-up" data-delay="1">
+                <div class="gov-number">1</div>
+                <h3>One Person, One Vote</h3>
+                <p>A billionaire and a student have the exact same voting power. Period. No amount of money can buy more influence. This is the most democratic blockchain ever designed &mdash; and it is by design, not by accident.</p>
+            </div>
+            <div class="gov-card" data-anim="fade-up" data-delay="3">
+                <div class="gov-number">2</div>
+                <h3>No Surprise Changes</h3>
+                <p>Every update to the network goes through public peer review first. No one &mdash; not even the founders &mdash; can sneak in changes. You see everything before it goes live. Total transparency.</p>
+            </div>
+            <div class="gov-card" data-anim="fade-up" data-delay="5">
+                <div class="gov-number">3</div>
+                <h3>Real Company, Real Accountability</h3>
+                <p>Valorium X Technologies Inc. is a registered Canadian company with a real address, real people, and real legal accountability. Not an anonymous team hiding behind pseudonyms. You know exactly who is building this.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNICAL (10% for devs) -->
+<section class="section" id="tech">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">For Developers</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">Under the <span class="gradient-text">Hood</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">For researchers, auditors, and developers who want the technical details.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card" data-anim="fade-up" data-delay="1" onclick="this.classList.toggle('open')">
+                <div class="tech-header">
+                    <h3>Architecture & Protocol Layers</h3>
+                    <span class="tech-toggle">+</span>
+                </div>
+                <div class="tech-body">
+                    <ul>
+                        <li><strong>Double-Helix Ledger:</strong> Two intertwined chains (Transaction + Validation) with cryptographic interlocking via CIP</li>
+                        <li><strong>Quadrit Model:</strong> Novel data structure inspired by DNA quadruplex formations for efficient block encoding</li>
+                        <li><strong>Genetic HD Paths:</strong> Hierarchical deterministic key derivation inspired by biological inheritance patterns</li>
+                        <li><strong>Entangled Parcel Model (UTXO-DNA):</strong> Transaction structure combining UTXO efficiency with lineage tracking</li>
+                        <li><strong>G-Quadruplex Buffer:</strong> Cryptographic buffering layer for enhanced security during consensus</li>
+                    </ul>
+                    <a href="https://github.com/ValoriumX/ValoriumX/wiki/Architecture-%26-Protocol-Layers" class="tech-link" target="_blank" rel="noopener">Full documentation on GitHub Wiki &rarr;</a>
+                </div>
+            </div>
+            <div class="tech-card" data-anim="fade-up" data-delay="2" onclick="this.classList.toggle('open')">
+                <div class="tech-header">
+                    <h3>Consensus: CIP + VIC</h3>
+                    <span class="tech-toggle">+</span>
+                </div>
+                <div class="tech-body">
+                    <ul>
+                        <li><strong>CIP (Cryptographic Interlocking Proof):</strong> Novel consensus mechanism where validation and transaction chains cross-verify</li>
+                        <li><strong>VIC (Valorium-Incentivized Consensus):</strong> Incentivizes useful computation rather than proof-of-wasted-energy</li>
+                        <li><strong>Proof of Useful Work:</strong> Mining contributes real processing value to the network</li>
+                        <li><strong>Spiking-Cortex Nodes:</strong> AI-assisted node architecture for intelligent network orchestration</li>
+                    </ul>
+                    <a href="https://github.com/ValoriumX/ValoriumX/wiki" class="tech-link" target="_blank" rel="noopener">Consensus documentation &rarr;</a>
+                </div>
+            </div>
+            <div class="tech-card" data-anim="fade-up" data-delay="3" onclick="this.classList.toggle('open')">
+                <div class="tech-header">
+                    <h3>Post-Quantum Cryptography</h3>
+                    <span class="tech-toggle">+</span>
+                </div>
+                <div class="tech-body">
+                    <ul>
+                        <li>Designed from the ground up to resist quantum computing attacks</li>
+                        <li>Uses lattice-based and hash-based cryptographic primitives</li>
+                        <li>No dependency on RSA or elliptic curve cryptography for core security</li>
+                        <li>Future-proof key management through genetic HD paths</li>
+                    </ul>
+                    <a href="https://github.com/ValoriumX/ValoriumX/wiki" class="tech-link" target="_blank" rel="noopener">Security documentation &rarr;</a>
+                </div>
+            </div>
+            <div class="tech-card" data-anim="fade-up" data-delay="4" onclick="this.classList.toggle('open')">
+                <div class="tech-header">
+                    <h3>Built with Rust</h3>
+                    <span class="tech-toggle">+</span>
+                </div>
+                <div class="tech-body">
+                    <ul>
+                        <li>Core blockchain written in Rust for memory safety and performance</li>
+                        <li>Zero-cost abstractions for high-throughput transaction processing</li>
+                        <li>Same language powering Solana, Polkadot, and other serious L1 chains</li>
+                        <li>Prevents entire classes of bugs (buffer overflows, null pointers, data races)</li>
+                    </ul>
+                    <a href="https://github.com/ValoriumX" class="tech-link" target="_blank" rel="noopener">GitHub Repository &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="section section-dark" id="community">
+    <div class="container">
+        <span class="section-label" data-anim="fade-right">Community</span>
+        <h2 class="section-title" data-anim="blur-in" data-delay="1">The Early Ones <span class="gradient-text" style="background:linear-gradient(135deg,var(--purple),var(--purple-2));-webkit-background-clip:text;background-clip:text;">Win Big</span></h2>
+        <p class="section-desc" data-anim="fade-up" data-delay="2">Every major crypto had a moment when early believers got in before the rest of the world noticed. For Valorium X, that moment is right now. The community is forming, the tech is being built, the miners are ready. The question is: will you be early, or will you wish you were?</p>
+
+        <div class="social-grid">
+            <a href="#" class="social-card" data-anim="scale-in" data-delay="6" data-anim="scale-in" data-delay="5" data-anim="scale-in" data-delay="3" data-anim="scale-in" data-delay="2" data-anim="scale-in" data-delay="1" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                <span>Discord</span>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                <span>Telegram</span>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span>X (Twitter)</span>
+            </a>
+            <a href="https://github.com/ValoriumX" class="social-card" data-anim="scale-in" data-delay="4" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                <span>GitHub</span>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><polygon points="9.545,15.568 15.818,12 9.545,8.432" fill="#fff"/></svg>
+                <span>YouTube</span>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61.04 3.91.14 1.18.09 2.16.51 2.97 1.31.82.81 1.22 1.79 1.31 2.97.1 1.3.16 2.6.14 3.91-.02 1.31-.04 2.61-.14 3.91-.09 1.18-.49 2.16-1.31 2.97-.81.82-1.79 1.22-2.97 1.31-1.3.1-2.6.16-3.91.14-1.31-.02-2.61-.04-3.91-.14-1.18-.09-2.16-.49-2.97-1.31-.82-.81-1.22-1.79-1.31-2.97-.1-1.3-.16-2.6-.14-3.91.02-1.31.04-2.61.14-3.91.09-1.18.51-2.16 1.31-2.97.81-.82 1.79-1.22 2.97-1.31 1.3-.1 2.6-.16 3.91-.14zM12 6.35c-3.12 0-5.65 2.53-5.65 5.65s2.53 5.65 5.65 5.65 5.65-2.53 5.65-5.65-2.53-5.65-5.65-5.65zm0 9.3c-2.02 0-3.65-1.63-3.65-3.65S9.98 8.35 12 8.35s3.65 1.63 3.65 3.65-1.63 3.65-3.65 3.65zm5.83-9.53c-.73 0-1.32.59-1.32 1.32 0 .73.59 1.32 1.32 1.32.73 0 1.32-.59 1.32-1.32 0-.73-.59-1.32-1.32-1.32z"/></svg>
+                <span>Instagram</span>
+            </a>
+        </div>
+
+        <div class="cta-box" data-anim="scale-in">
+            <h3>You Are Still Early.</h3>
+            <p>The network is being built. The miners are in stock. The community is growing daily. In six months, everyone will know about Valorium X. The only question is whether you got in now or later.</p>
+            <a href="#community" class="btn btn-primary btn-lg">Get In Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="footer-logo"><span class="logo-v">V</span>ALORIUM <span class="logo-x">X</span></span>
+                <p>A security-first, post-quantum Layer 1 blockchain built for the long term.</p>
+                <p class="footer-corp">Valorium X Technologies Inc.<br>324 rue des Forges, local 201<br>Trois-Rivi&egrave;res (QC), G9A 2G8<br>Canada</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#about">About</a>
+                <a href="#journey">How It Works</a>
+                <a href="#ecosystem">Ecosystem</a>
+                <a href="#miners">Miners</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="#tech">Developer Docs</a>
+                <a href="https://github.com/ValoriumX/ValoriumX/wiki" target="_blank" rel="noopener">GitHub Wiki</a>
+                <a href="#">Whitepaper</a>
+                <a href="#">Academy</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="mailto:info@valoriumx.org">info@valoriumx.org</a>
+                <a href="mailto:security@valoriumx.org">security@valoriumx.org</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Valorium X Technologies Inc. All rights reserved.</p>
+            <p class="footer-disclaimer">This website is for informational purposes only. VRX is not a financial instrument and should not be considered an investment. Always do your own research.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+// Loader — 3D Text Morph
+const loader = document.getElementById('loader');
+document.body.style.overflow = 'hidden';
+
+// Click-to-enter: wait for user click, start audio, then reveal
+function dismissLoader() {
+    setTimeout(() => {
+        loader.classList.add('loader-done');
+        document.body.style.overflow = '';
+        document.body.classList.add('site-revealed');
+        // Reveal token with fade-in
+        const heroLogo = document.querySelector('.hero-logo');
+        const heroHeader = document.querySelector('.hero-header');
+        const lightningCanvas = document.querySelector('.lightning-overlay');
+        if (heroLogo) heroLogo.classList.add('token-visible');
+        if (heroHeader) heroHeader.classList.add('token-visible');
+        if (lightningCanvas) lightningCanvas.classList.add('token-visible');
+
+            const tokenGlow = document.getElementById('tokenGlowOverlay');
+            if (tokenGlow) tokenGlow.classList.add('token-visible');
+            // VALORIUM X brand slam — delayed for impact
+            setTimeout(function() {
+                var brand = document.getElementById('heroBrand');
+                if (brand) brand.classList.add('brand-visible');
+                // Scroll indicator appears after brand animation completes
+                setTimeout(function() {
+                    var scroll = document.getElementById('scrollIndicator');
+                    if (scroll) scroll.classList.add('scroll-visible');
+                }, 1400);
+            }, 1600);
+        setTimeout(() => loader.remove(), 800);
+    }, 800);
+}
+
+// Wait for click to enter — this guarantees user gesture for audio
+loader.style.cursor = 'pointer';
+loader.addEventListener('click', function() {
+    // Start audio — bgMusic element is above loader in DOM so it's ready
+    var a = document.getElementById('bgMusic');
+    a.volume = 0.2;
+    a.play();
+    // Update toggle button icons
+    var off = document.getElementById('audioIconOff');
+    var on = document.getElementById('audioIconOn');
+    var b = document.getElementById('audioToggle');
+    if (off) off.style.display = 'none';
+    if (on) on.style.display = 'block';
+    if (b) b.classList.add('audio-active');
+    // Dismiss loader
+    dismissLoader();
+}, { once: true });
+
+// Hero — WebGL Sun Shader with Logo Corona
+(() => {
+  const canvas = document.getElementById('glcanvas');
+  const gl = canvas.getContext('webgl');
+  if (!gl) return;
+
+  function resize() {
+    const d = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = innerWidth * d;
+    canvas.height = innerHeight * d;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  addEventListener('resize', resize);
+
+  const vert = `
+    attribute vec2 pos;
+    void main() { gl_Position = vec4(pos, 0.0, 1.0); }
+  `;
+
+  const frag = `
+    precision highp float;
+    uniform vec2 u_res;
+    uniform float u_time;
+    void main() {
+      vec2 FC = gl_FragCoord.xy;
+      float t = u_time;
+      vec2 r = u_res;
+      vec2 p = (FC * 2.0 - r) / r.y;
+      vec3 c = vec3(0.0);
+      for (float i = 0.0; i < 20.0; i++) {
+        float a = i / 1.5 + t * 0.5;
+        vec2 q = p;
+        q.x = q.x + sin(q.y * 19.0 + t * 2.0 + i) *
+              29.0 * smoothstep(0.0, -2.0, q.y);
+        float d = length(q - vec2(cos(a), sin(a)) *
+                     (0.4 * smoothstep(0.0, 0.5, -q.y)));
+        c = c + vec3(0.10, 0.25, 0.45) * (0.032 / d);
+      }
+      vec3 col = c * c + vec3(0.01, 0.02, 0.04);
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compile(src, type) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+      throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+
+  function link(vs, fs) {
+    const p = gl.createProgram();
+    gl.attachShader(p, vs);
+    gl.attachShader(p, fs);
+    gl.bindAttribLocation(p, 0, 'pos');
+    gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS))
+      throw new Error(gl.getProgramInfoLog(p));
+    return p;
+  }
+
+  try {
+    const vs = compile(vert, gl.VERTEX_SHADER);
+    const fs = compile(frag, gl.FRAGMENT_SHADER);
+    const program = link(vs, fs);
+    gl.useProgram(program);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+    const u_res  = gl.getUniformLocation(program, 'u_res');
+    const u_time = gl.getUniformLocation(program, 'u_time');
+
+        const start = performance.now();
+
+    var heroRunning = true;
+    var heroLastFrame = 0;
+    function draw() {
+      if (!heroRunning) return;
+      requestAnimationFrame(draw);
+      var now = performance.now();
+      if (now - heroLastFrame < 33) return; // ~30fps cap
+      heroLastFrame = now;
+      const t = (now - start) * 0.001;
+      gl.uniform2f(u_res, canvas.width, canvas.height);
+      gl.uniform1f(u_time, t);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    var heroObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { if (!heroRunning) { heroRunning = true; draw(); } }
+        else { heroRunning = false; }
+      });
+    }, { threshold: 0.05 });
+    heroObs.observe(canvas);
+    draw();
+  } catch (e) { console.error('WebGL shader error:', e); }
+})();
+
+
+    // Horizontal scroll showcase (perf-optimized: no per-card getBoundingClientRect)
+    (function() {
+        const wrapper = document.getElementById("showcaseWrapper");
+        const track = document.getElementById("showcaseTrack");
+        const intro = document.getElementById("showcaseIntro");
+        const keywords = document.querySelectorAll(".skw");
+        if (!wrapper || !track) return;
+
+        const cards = track.querySelectorAll(".showcase-slide");
+        const kwSpeeds = [];
+        keywords.forEach(kw => { kwSpeeds.push(parseFloat(kw.dataset.speed) || 0); });
+
+        // Pre-compute card layout (offsets from track start)
+        var cardOffsets = [];
+        var cardWidths = [];
+        function cacheCardLayout() {
+            cardOffsets = [];
+            cardWidths = [];
+            for (var i = 0; i < cards.length; i++) {
+                cardOffsets.push(cards[i].offsetLeft);
+                cardWidths.push(cards[i].offsetWidth);
+            }
+        }
+        cacheCardLayout();
+        window.addEventListener("resize", cacheCardLayout);
+
+        var showcaseVisible = false;
+        var cachedWrapperH = wrapper.offsetHeight;
+        var cachedViewW = window.innerWidth;
+        var cachedViewH = window.innerHeight;
+        window.addEventListener("resize", function() {
+            cachedWrapperH = wrapper.offsetHeight;
+            cachedViewW = window.innerWidth;
+            cachedViewH = window.innerHeight;
+        });
+
+        var lastProgress = -1;
+
+        function updateShowcase() {
+            if (!showcaseVisible) return;
+            requestAnimationFrame(updateShowcase);
+
+            var scrolled = -wrapper.getBoundingClientRect().top;
+            var maxScroll = cachedWrapperH - cachedViewH;
+            var progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+            // Skip only if progress is truly identical
+            if (progress === lastProgress) return;
+            lastProgress = progress;
+
+            if (intro) {
+                var introProgress = Math.min(1, progress / 0.15);
+                intro.style.opacity = 1 - introProgress;
+                intro.style.transform = "translateY(" + (-introProgress * 60) + "px)";
+            }
+
+            var trackWidth = track.scrollWidth;
+            var totalTravel = trackWidth + cachedViewW;
+            var moveProgress = Math.max(0, Math.min(1, (progress - 0.1) / 0.85));
+            var translateX = -moveProgress * totalTravel;
+            track.style.transform = "translateY(-50%) translateX(" + translateX + "px)";
+
+            // Compute card screen positions from translateX + cached offsets
+            // track CSS: left:100% => starts at viewport right edge
+            var trackScreenLeft = cachedViewW + translateX;
+
+            var centerX = cachedViewW / 2;
+            var maxTilt = 8;
+            for (var ci = 0; ci < cards.length; ci++) {
+                var cardLeft = trackScreenLeft + cardOffsets[ci];
+                var cardW = cardWidths[ci];
+                var cardRight = cardLeft + cardW;
+
+                if (cardRight < -200 || cardLeft > cachedViewW + 200) {
+                    if (cards[ci]._lastOpacity !== 0) { cards[ci].style.opacity = 0; cards[ci]._lastOpacity = 0; }
+                    continue;
+                }
+                var cardCenterX = cardLeft + cardW / 2;
+                var normalizedPos = (centerX - cardCenterX) / (cachedViewW * 0.6);
+                var tilt = Math.max(-maxTilt, Math.min(maxTilt, normalizedPos * maxTilt));
+
+                var edgeFade = 1, edgeScale = 1;
+                if (cardLeft > cachedViewW * 0.35) {
+                    var enterT = Math.max(0, Math.min(1, (cachedViewW - cardLeft) / (cachedViewW * 0.65)));
+                    edgeFade = enterT;
+                    edgeScale = 0.85 + enterT * 0.15;
+                }
+                if (cardRight < cachedViewW * 0.45) {
+                    var exitT = Math.max(0, Math.min(1, cardRight / (cachedViewW * 0.45)));
+                    edgeFade = exitT;
+                    edgeScale = 0.85 + exitT * 0.15;
+                }
+
+                cards[ci].style.transform = "rotate(" + tilt + "deg) scale(" + edgeScale + ")";
+                cards[ci].style.opacity = edgeFade;
+                cards[ci]._lastOpacity = edgeFade;
+            }
+
+            for (var ki = 0; ki < keywords.length; ki++) {
+                var x = kwSpeeds[ki] * progress * cachedViewW * 0.5;
+                var opacity = 0.03 + Math.sin(progress * Math.PI) * 0.04;
+                keywords[ki].style.transform = "translateX(" + x + "px)";
+                keywords[ki].style.opacity = opacity;
+            }
+        }
+
+        var scObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) { if (!showcaseVisible) { showcaseVisible = true; updateShowcase(); } }
+                else { showcaseVisible = false; }
+            });
+        }, { threshold: 0.02 });
+        scObs.observe(wrapper);
+    })();
+
+
+    // Lenis smooth scroll — DISABLED for native scroll test
+/*
+if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+        lerp: 0.08,
+        wheelMultiplier: 1.8,
+        touchMultiplier: 2,
+        smoothWheel: true,
+    });
+    function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+    }
+    requestAnimationFrame(lenisRaf);
+}
+*/
+
+// Shared debounce for resize handlers
+var _resizeCallbacks = [];
+var _resizeTimer = null;
+window.addEventListener('resize', function() {
+    if (_resizeTimer) clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(function() {
+        _resizeCallbacks.forEach(function(fn) { fn(); });
+    }, 150);
+});
+function onResizeDebounced(fn) { _resizeCallbacks.push(fn); }
+
+// Hero in-view observer - pauses CSS animations when scrolled past
+var heroHeader = document.getElementById('heroHeader');
+if (heroHeader) {
+    heroHeader.classList.add('in-view');
+    var heroViewObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) heroHeader.classList.add('in-view');
+            else heroHeader.classList.remove('in-view');
+        });
+    }, { threshold: 0.05 });
+    heroViewObs.observe(heroHeader);
+}
+
+// DNA section in-view observer - pauses helix animations off-screen
+var dnaSection = document.getElementById('how');
+if (dnaSection) {
+    var dnaViewObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) e.target.classList.add('anim-visible');
+            else e.target.classList.remove('anim-visible');
+        });
+    }, { threshold: 0.05 });
+    dnaViewObs.observe(dnaSection);
+}
+
+// Universal section visibility - adds/removes .perf-visible class
+// Powers CSS rule: section:not(.perf-visible) * { animation-play-state: paused }
+(function() {
+    var perfObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) e.target.classList.add('perf-visible');
+            else e.target.classList.remove('perf-visible');
+        });
+    }, { rootMargin: '100px 0px', threshold: 0 });
+    document.querySelectorAll('section, header').forEach(function(s) {
+        perfObs.observe(s);
+    });
+})();
+
+// Nav scroll effect (throttled via rAF)
+const nav = document.getElementById('nav');
+const scrollInd = document.getElementById('scrollIndicator');
+var scrollRafPending = false;
+var scrollIndHidden = false;
+window.addEventListener('scroll', () => {
+    if (scrollRafPending) return;
+    scrollRafPending = true;
+    requestAnimationFrame(() => {
+        scrollRafPending = false;
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+        if (scrollInd && !scrollIndHidden && window.scrollY > 30) {
+            scrollIndHidden = true;
+            scrollInd.style.opacity = '0';
+        }
+    });
+}, { passive: true });
+
+// Mobile menu
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    toggle.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+    });
+});
+
+// Smooth scroll (disabled — links are placeholders for now)
+
+// Scroll-triggered animations — observes all [data-anim] elements
+const animObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('anim-visible');
+            // Also add 'visible' for elements that use the old class
+            entry.target.classList.add('visible');
+            animObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('[data-anim]').forEach(el => {
+    animObserver.observe(el);
+});
+
+// Also observe elements that only use .visible (legacy)
+document.querySelectorAll('.pillar, .eco-card:not([data-anim]), .miner-card:not([data-anim]), .gov-card:not([data-anim]), .tech-card:not([data-anim]), .timeline-item:not([data-anim]), .social-card:not([data-anim])').forEach(el => {
+    animObserver.observe(el);
+});
+
+// Miner image scroll reveal — dramatic swoop entrance
+const minerRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target.querySelector('.mc3d-miner-img');
+            if (img) {
+                img.classList.add('miner-revealed');
+            }
+            minerRevealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.miner-card-3d').forEach(card => {
+    minerRevealObserver.observe(card);
+});
+
+
+
+
+// Accordion Slider — exact CodePen by split
+class AccordionSlider {
+    constructor() {
+        this.slides = document.querySelectorAll(".accordion-slider .slide");
+        this.prevBtn = document.querySelector(".nav-prev");
+        this.nextBtn = document.querySelector(".nav-next");
+        this.currentIndex = -1;
+        this.init();
+    }
+
+    init() {
+        this.slides.forEach((slide, index) => {
+            slide.addEventListener("click", () => this.setActiveSlide(index));
+        });
+        this.prevBtn.addEventListener("click", () => this.previousSlide());
+        this.nextBtn.addEventListener("click", () => this.nextSlide());
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") this.previousSlide();
+            if (e.key === "ArrowRight") this.nextSlide();
+        });
+    }
+
+    setActiveSlide(index) {
+        if (this.currentIndex === index) {
+            this.slides.forEach((slide) => slide.classList.remove("active"));
+            this.currentIndex = -1;
+        } else {
+            this.slides.forEach((slide) => slide.classList.remove("active"));
+            this.slides[index].classList.add("active");
+            this.currentIndex = index;
+        }
+    }
+
+    nextSlide() {
+        const nextIndex =
+            this.currentIndex === -1 ? 0 : (this.currentIndex + 1) % this.slides.length;
+        this.setActiveSlide(nextIndex);
+    }
+
+    previousSlide() {
+        const prevIndex =
+            this.currentIndex === -1
+                ? this.slides.length - 1
+                : (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        this.setActiveSlide(prevIndex);
+    }
+}
+
+new AccordionSlider();
+
+
+</script>
+
+
+<script>
+// Lightning effect around token
+(function() {
+  const canvas = document.getElementById('lightningCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  function resize() {
+    const h = window.innerHeight;
+    const w = window.innerWidth;
+    canvas.width = w;
+    canvas.height = h;
+  }
+  resize();
+  onResizeDebounced(resize);
+
+  // Lightning bolt generator
+  function drawBolt(x1, y1, x2, y2, depth) {
+    if (depth === 0) {
+      ctx.lineTo(x2, y2);
+      return;
+    }
+    const midX = (x1 + x2) / 2 + (Math.random() - 0.5) * (depth * 4);
+    const midY = (y1 + y2) / 2 + (Math.random() - 0.5) * (depth * 4);
+    drawBolt(x1, y1, midX, midY, depth - 1);
+    drawBolt(midX, midY, x2, y2, depth - 1);
+  }
+
+  const bolts = [];
+  
+  function spawnBolt() {
+    const cX = canvas.width / 2;
+    const cY = canvas.height * 0.50;
+    const radius = canvas.height * 0.05; // match token radius
+    
+    // Random angle around the token circle
+    const angle1 = Math.random() * Math.PI * 2;
+    const angle2 = angle1 + (Math.random() - 0.5) * 1.2; // nearby angle
+    
+    const x1 = cX + Math.cos(angle1) * radius * (0.7 + Math.random() * 0.5);
+    const y1 = cY + Math.sin(angle1) * radius * (0.7 + Math.random() * 0.5);
+    const x2 = cX + Math.cos(angle2) * radius * (0.7 + Math.random() * 0.5);
+    const y2 = cY + Math.sin(angle2) * radius * (0.7 + Math.random() * 0.5);
+    
+    bolts.push({
+      x1, y1, x2, y2,
+      life: 1.0,
+      decay: 0.02 + Math.random() * 0.03,
+      width: 0.5 + Math.random() * 1.5
+    });
+  }
+
+  var _lightningRunning = true;
+  function animate() {
+    if (!_lightningRunning) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Randomly spawn bolts
+    if (Math.random() < 0.15) spawnBolt();
+    if (Math.random() < 0.05) { spawnBolt(); spawnBolt(); } // occasional burst
+    
+    for (let i = bolts.length - 1; i >= 0; i--) {
+      const b = bolts[i];
+      b.life -= b.decay;
+      if (b.life <= 0) { bolts.splice(i, 1); continue; }
+      
+      ctx.save();
+      ctx.globalAlpha = b.life * 0.8;
+      ctx.strokeStyle = 'rgba(150, 220, 255, 0.9)';
+      ctx.lineWidth = b.width;
+      ctx.shadowColor = 'rgba(0, 180, 255, 0.8)';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(b.x1, b.y1);
+      drawBolt(b.x1, b.y1, b.x2, b.y2, 4);
+      ctx.stroke();
+      
+      // Bright core
+      ctx.strokeStyle = 'rgba(220, 240, 255, 0.7)';
+      ctx.lineWidth = b.width * 0.4;
+      ctx.shadowBlur = 4;
+      ctx.beginPath();
+      ctx.moveTo(b.x1, b.y1);
+      drawBolt(b.x1, b.y1, b.x2, b.y2, 4);
+      ctx.stroke();
+      ctx.restore();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Pause lightning when hero is off-screen
+  var _lightObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        if (!_lightningRunning) { _lightningRunning = true; animate(); }
+      } else {
+        _lightningRunning = false;
+      }
+    });
+  }, { threshold: 0.01 });
+  _lightObs.observe(canvas);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script type="module">
+(function() {
+    var wrap = document.getElementById('vstCanvasWrap');
+    var canvas = document.getElementById('vstCanvas');
+    if (!wrap || !canvas) return;
+
+    // Lazy init: only start when slide is near viewport
+    var initialized = false;
+
+    function initVST() {
+        if (initialized) return;
+        initialized = true;
+
+        import('https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js').then(function(THREE_NS) {
+            var THREE = THREE_NS;
+
+            (function() {
+
+                var W = wrap.clientWidth || 400;
+                var H = wrap.clientHeight || 400;
+
+                // Scene
+                var scene = new THREE.Scene();
+                // no fog for transparent bg
+
+                // Camera
+                var camera = new THREE.PerspectiveCamera(65, W / H, 0.1, 500);
+                camera.position.set(0, 6, 38);
+                camera.lookAt(0, 0, 0);
+
+                // Renderer
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: canvas,
+                    antialias: true,
+                    alpha: true,
+                    powerPreference: "high-performance"
+                });
+                renderer.setSize(W, H);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+                renderer.setClearColor(0x000000, 0);
+                renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+                // No bloom - direct render for transparent background
+
+                // Cyan/gold palette
+                var palette = [
+                    new THREE.Color(0x06b6d4),  // cyan-500
+                    new THREE.Color(0x22d3ee),  // cyan-400
+                    new THREE.Color(0xf59e0b),  // amber-500
+                    new THREE.Color(0x8b5cf6),  // violet-500
+                    new THREE.Color(0x0891b2)   // cyan-600
+                ];
+
+                // Simplex noise GLSL (same as CodePen)
+                var noiseFn = [
+                    'vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
+                    'vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}',
+                    'vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}',
+                    'vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}',
+                    'float snoise(vec3 v){',
+                    '  const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);',
+                    '  vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);',
+                    '  vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;',
+                    '  vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);',
+                    '  vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;',
+                    '  i=mod289(i);',
+                    '  vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));',
+                    '  float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;',
+                    '  vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);',
+                    '  vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);',
+                    '  vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);',
+                    '  vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));',
+                    '  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;',
+                    '  vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);',
+                    '  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));',
+                    '  p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;',
+                    '  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;',
+                    '  return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));',
+                    '}'
+                ].join('\n');
+
+                // Node vertex shader
+                var nodeVS = noiseFn + '\n' + [
+                    'attribute float nodeSize;',
+                    'attribute float nodeType;',
+                    'attribute vec3 nodeColor;',
+                    'attribute float distanceFromRoot;',
+                    'uniform float uTime;',
+                    'uniform float uBaseNodeSize;',
+                    'varying vec3 vColor;',
+                    'varying float vNodeType;',
+                    'varying vec3 vPosition;',
+                    'varying float vDistanceFromRoot;',
+                    'varying float vGlow;',
+                    'void main(){',
+                    '  vNodeType=nodeType;vColor=nodeColor;vDistanceFromRoot=distanceFromRoot;',
+                    '  vec3 worldPos=(modelMatrix*vec4(position,1.0)).xyz;vPosition=worldPos;',
+                    '  float breathe=sin(uTime*0.7+distanceFromRoot*0.15)*0.15+0.85;',
+                    '  float baseSize=nodeSize*breathe;',
+                    '  vGlow=0.5+0.5*sin(uTime*0.5+distanceFromRoot*0.2);',
+                    '  vec3 mp=position;',
+                    '  if(nodeType>0.5){float n=snoise(position*0.08+uTime*0.08);mp+=normal*n*0.15;}',
+                    '  vec4 mv=modelViewMatrix*vec4(mp,1.0);',
+                    '  gl_PointSize=baseSize*uBaseNodeSize*(800.0/-mv.z);',
+                    '  gl_Position=projectionMatrix*mv;',
+                    '}'
+                ].join('\n');
+
+                // Node fragment shader
+                var nodeFS = [
+                    'uniform float uTime;',
+                    'varying vec3 vColor;',
+                    'varying float vNodeType;',
+                    'varying vec3 vPosition;',
+                    'varying float vDistanceFromRoot;',
+                    'varying float vGlow;',
+                    'void main(){',
+                    '  vec2 c=2.0*gl_PointCoord-1.0;float d=length(c);',
+                    '  if(d>1.0)discard;',
+                    '  float g1=1.0-smoothstep(0.0,0.5,d);',
+                    '  float g2=1.0-smoothstep(0.0,1.0,d);',
+                    '  float gs=pow(g1,1.2)+g2*0.3;',
+                    '  float bc=0.9+0.1*sin(uTime*0.6+vDistanceFromRoot*0.25);',
+                    '  vec3 fc=vColor*bc;',
+                    '  float cb=smoothstep(0.4,0.0,d);fc+=vec3(1.0)*cb*0.3;',
+                    '  float alpha=gs*(0.95-0.3*d);',
+                    '  float df=smoothstep(80.0,12.0,length(vPosition-cameraPosition));',
+                    '  if(vNodeType>0.5){fc*=1.1;alpha*=0.9;}',
+                    '  fc*=(1.0+vGlow*0.1);',
+                    '  gl_FragColor=vec4(fc,alpha*df);',
+                    '}'
+                ].join('\n');
+
+                // Connection vertex shader
+                var connVS = noiseFn + '\n' + [
+                    'attribute vec3 startPoint;',
+                    'attribute vec3 endPoint;',
+                    'attribute float connectionStrength;',
+                    'attribute float pathIndex;',
+                    'attribute vec3 connectionColor;',
+                    'uniform float uTime;',
+                    'varying vec3 vColor;',
+                    'varying float vConnectionStrength;',
+                    'varying float vPathPosition;',
+                    'varying float vDistanceFromCamera;',
+                    'void main(){',
+                    '  float t=position.x;vPathPosition=t;',
+                    '  vec3 mid=mix(startPoint,endPoint,0.5);',
+                    '  float po=sin(t*3.14159)*0.15;',
+                    '  vec3 perp=normalize(cross(normalize(endPoint-startPoint),vec3(0.0,1.0,0.0)));',
+                    '  if(length(perp)<0.1)perp=vec3(1.0,0.0,0.0);',
+                    '  mid+=perp*po;',
+                    '  vec3 p0=mix(startPoint,mid,t);vec3 p1=mix(mid,endPoint,t);',
+                    '  vec3 fp=mix(p0,p1,t);',
+                    '  float n=snoise(vec3(pathIndex*0.08,t*0.6,uTime*0.15));',
+                    '  fp+=perp*n*0.12;',
+                    '  vec3 wp=(modelMatrix*vec4(fp,1.0)).xyz;',
+                    '  vColor=connectionColor;vConnectionStrength=connectionStrength;',
+                    '  vDistanceFromCamera=length(wp-cameraPosition);',
+                    '  gl_Position=projectionMatrix*modelViewMatrix*vec4(fp,1.0);',
+                    '}'
+                ].join('\n');
+
+                // Connection fragment shader
+                var connFS = [
+                    'uniform float uTime;',
+                    'varying vec3 vColor;',
+                    'varying float vConnectionStrength;',
+                    'varying float vPathPosition;',
+                    'varying float vDistanceFromCamera;',
+                    'void main(){',
+                    '  float f1=sin(vPathPosition*25.0-uTime*4.0)*0.5+0.5;',
+                    '  float f2=sin(vPathPosition*15.0-uTime*2.5+1.57)*0.5+0.5;',
+                    '  float cf=(f1+f2*0.5)/1.5;',
+                    '  vec3 bc=vColor*(0.8+0.2*sin(uTime*0.6+vPathPosition*12.0));',
+                    '  float fi=0.4*cf*vConnectionStrength;',
+                    '  vec3 fc=bc*(0.7+fi+vConnectionStrength*0.5);',
+                    '  float ba=0.7*vConnectionStrength;',
+                    '  float fa=cf*0.3;',
+                    '  float alpha=ba+fa;',
+                    '  float df=smoothstep(80.0,12.0,vDistanceFromCamera);',
+                    '  gl_FragColor=vec4(fc,alpha*df);',
+                    '}'
+                ].join('\n');
+
+                // === Generate crystalline sphere (formation 0) ===
+                function Node(pos, level, type) {
+                    this.position = pos;
+                    this.connections = [];
+                    this.level = level;
+                    this.type = type;
+                    this.size = type === 0 ? (0.8 + Math.random() * 0.6) : (0.5 + Math.random() * 0.5);
+                    this.distanceFromRoot = 0;
+                }
+                Node.prototype.addConnection = function(node, strength) {
+                    if (!this.isConnectedTo(node)) {
+                        this.connections.push({ node: node, strength: strength });
+                        node.connections.push({ node: this, strength: strength });
+                    }
+                };
+                Node.prototype.isConnectedTo = function(node) {
+                    return this.connections.some(function(c) { return c.node === node; });
+                };
+
+                function generateSphere() {
+                    var nodes = [];
+                    var root = new Node(new THREE.Vector3(0, 0, 0), 0, 0);
+                    root.size = 2.0;
+                    nodes.push(root);
+                    var layers = 5;
+                    var golden = (1 + Math.sqrt(5)) / 2;
+                    for (var layer = 1; layer <= layers; layer++) {
+                        var radius = layer * 4;
+                        var numPts = Math.floor(layer * 12);
+                        for (var i = 0; i < numPts; i++) {
+                            var phi = Math.acos(1 - 2 * (i + 0.5) / numPts);
+                            var theta = 2 * Math.PI * i / golden;
+                            var pos = new THREE.Vector3(
+                                radius * Math.sin(phi) * Math.cos(theta),
+                                radius * Math.sin(phi) * Math.sin(theta),
+                                radius * Math.cos(phi)
+                            );
+                            var isLeaf = layer === layers || Math.random() < 0.3;
+                            var node = new Node(pos, layer, isLeaf ? 1 : 0);
+                            node.distanceFromRoot = radius;
+                            nodes.push(node);
+                            if (layer > 1) {
+                                var prev = nodes.filter(function(n) { return n.level === layer - 1 && n !== root; });
+                                prev.sort(function(a, b) { return pos.distanceTo(a.position) - pos.distanceTo(b.position); });
+                                for (var j = 0; j < Math.min(3, prev.length); j++) {
+                                    var dist = pos.distanceTo(prev[j].position);
+                                    var str = 1.0 - (dist / (radius * 2));
+                                    node.addConnection(prev[j], Math.max(0.3, str));
+                                }
+                            } else {
+                                root.addConnection(node, 0.9);
+                            }
+                        }
+                        var layerN = nodes.filter(function(n) { return n.level === layer && n !== root; });
+                        for (var ii = 0; ii < layerN.length; ii++) {
+                            var nd = layerN[ii];
+                            var nearby = layerN.filter(function(n) { return n !== nd; })
+                                .sort(function(a, b) { return nd.position.distanceTo(a.position) - nd.position.distanceTo(b.position); })
+                                .slice(0, 5);
+                            for (var k = 0; k < nearby.length; k++) {
+                                var d = nd.position.distanceTo(nearby[k].position);
+                                if (d < radius * 0.8 && !nd.isConnectedTo(nearby[k])) {
+                                    nd.addConnection(nearby[k], 0.6);
+                                }
+                            }
+                        }
+                    }
+                    // Cross-layer connections
+                    var outer = nodes.filter(function(n) { return n.level >= 3; });
+                    for (var x = 0; x < Math.min(20, outer.length); x++) {
+                        var n1 = outer[Math.floor(Math.random() * outer.length)];
+                        var n2 = outer[Math.floor(Math.random() * outer.length)];
+                        if (n1 !== n2 && !n1.isConnectedTo(n2) && Math.abs(n1.level - n2.level) > 1) {
+                            n1.addConnection(n2, 0.4);
+                        }
+                    }
+                    return { nodes: nodes, root: root };
+                }
+
+                var net = generateSphere();
+
+                // Build node geometry
+                var nGeo = new THREE.BufferGeometry();
+                var nPos = [], nTypes = [], nSizes = [], nColors = [], nDist = [];
+                net.nodes.forEach(function(node) {
+                    nPos.push(node.position.x, node.position.y, node.position.z);
+                    nTypes.push(node.type);
+                    nSizes.push(node.size);
+                    nDist.push(node.distanceFromRoot);
+                    var ci = Math.min(node.level, palette.length - 1);
+                    var col = palette[ci % palette.length].clone();
+                    col.offsetHSL(
+                        (Math.random() - 0.5) * 0.03,
+                        (Math.random() - 0.5) * 0.08,
+                        (Math.random() - 0.5) * 0.08
+                    );
+                    nColors.push(col.r, col.g, col.b);
+                });
+                nGeo.setAttribute('position', new THREE.Float32BufferAttribute(nPos, 3));
+                nGeo.setAttribute('nodeType', new THREE.Float32BufferAttribute(nTypes, 1));
+                nGeo.setAttribute('nodeSize', new THREE.Float32BufferAttribute(nSizes, 1));
+                nGeo.setAttribute('nodeColor', new THREE.Float32BufferAttribute(nColors, 3));
+                nGeo.setAttribute('distanceFromRoot', new THREE.Float32BufferAttribute(nDist, 1));
+
+                var nodeMat = new THREE.ShaderMaterial({
+                    uniforms: {
+                        uTime: { value: 0 },
+                        uBaseNodeSize: { value: 0.6 }
+                    },
+                    vertexShader: nodeVS,
+                    fragmentShader: nodeFS,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.AdditiveBlending
+                });
+                var nodesMesh = new THREE.Points(nGeo, nodeMat);
+                scene.add(nodesMesh);
+
+                // Build connection geometry
+                var cGeo = new THREE.BufferGeometry();
+                var cPos = [], cStarts = [], cEnds = [], cStr = [], cIdx = [], cCol = [];
+                var seen = {};
+                var pidx = 0;
+                net.nodes.forEach(function(node, ni) {
+                    node.connections.forEach(function(conn) {
+                        var ci2 = net.nodes.indexOf(conn.node);
+                        if (ci2 === -1) return;
+                        var key = Math.min(ni, ci2) + '-' + Math.max(ni, ci2);
+                        if (seen[key]) return;
+                        seen[key] = true;
+                        var sp = node.position;
+                        var ep = conn.node.position;
+                        for (var s = 0; s < 20; s++) {
+                            var t = s / 19;
+                            cPos.push(t, 0, 0);
+                            cStarts.push(sp.x, sp.y, sp.z);
+                            cEnds.push(ep.x, ep.y, ep.z);
+                            cIdx.push(pidx);
+                            cStr.push(conn.strength);
+                            var avgL = Math.min(Math.floor((node.level + conn.node.level) / 2), palette.length - 1);
+                            var col = palette[avgL % palette.length].clone();
+                            col.offsetHSL(
+                                (Math.random() - 0.5) * 0.03,
+                                (Math.random() - 0.5) * 0.08,
+                                (Math.random() - 0.5) * 0.08
+                            );
+                            cCol.push(col.r, col.g, col.b);
+                        }
+                        pidx++;
+                    });
+                });
+                cGeo.setAttribute('position', new THREE.Float32BufferAttribute(cPos, 3));
+                cGeo.setAttribute('startPoint', new THREE.Float32BufferAttribute(cStarts, 3));
+                cGeo.setAttribute('endPoint', new THREE.Float32BufferAttribute(cEnds, 3));
+                cGeo.setAttribute('connectionStrength', new THREE.Float32BufferAttribute(cStr, 1));
+                cGeo.setAttribute('pathIndex', new THREE.Float32BufferAttribute(cIdx, 1));
+                cGeo.setAttribute('connectionColor', new THREE.Float32BufferAttribute(cCol, 3));
+
+                var connMat = new THREE.ShaderMaterial({
+                    uniforms: { uTime: { value: 0 } },
+                    vertexShader: connVS,
+                    fragmentShader: connFS,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.AdditiveBlending
+                });
+                var connMesh = new THREE.LineSegments(cGeo, connMat);
+                scene.add(connMesh);
+
+                // Animation
+                var clock = new THREE.Clock();
+                var running = true;
+
+                var vstLastFrame = 0;
+                function animate() {
+                    if (!running) return;
+                    requestAnimationFrame(animate);
+                    var now = performance.now();
+                    if (now - vstLastFrame < 33) return; // ~30fps cap
+                    vstLastFrame = now;
+                    var t = clock.getElapsedTime();
+                    nodeMat.uniforms.uTime.value = t;
+                    connMat.uniforms.uTime.value = t;
+                    // Auto rotate
+                    nodesMesh.rotation.y = t * 0.15;
+                    connMesh.rotation.y = t * 0.15;
+                    // Gentle wobble
+                    nodesMesh.rotation.x = Math.sin(t * 0.08) * 0.1;
+                    connMesh.rotation.x = Math.sin(t * 0.08) * 0.1;
+                    renderer.render(scene, camera);
+                }
+
+                // Resize handler
+                function onResize() {
+                    var w = wrap.clientWidth || 400;
+                    var h = wrap.clientHeight || 400;
+                    camera.aspect = w / h;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w, h);
+                }
+                var ro = new ResizeObserver(onResize);
+                ro.observe(wrap);
+
+                // Visibility: pause when off-screen
+                var visObs = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (e.isIntersecting) {
+                            if (!running) { running = true; clock.start(); animate(); }
+                        } else {
+                            running = false; clock.stop();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                visObs.observe(wrap);
+
+                animate();
+            })(); // end inner IIFE
+        }); // import THREE
+    } // initVST
+
+    // Start immediately or on intersection
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                obs.disconnect();
+                initVST();
+            }
+        });
+    }, { rootMargin: '200px', threshold: 0 });
+    obs.observe(wrap);
+})();
+</script>
+
+
+<script>
+(function() {
+    var stack = document.getElementById('hexStack');
+    if (!stack) return;
+
+    var ids = ['hexCvs0','hexCvs1','hexCvs2','hexCvs3','hexCvs4'];
+    var instances = [];
+
+    var baseRad = Math.PI * 2 / 6;
+
+    function createInstance(cvs, index) {
+        var ctx, w, h, dpr;
+        var tick = 1920 + index * 400;
+        var lines = [];
+        var dieX, dieY;
+
+        var opts = {
+            len: 20,
+            count: 8,
+            baseTime: 10,
+            addedTime: 10,
+            dieChance: 0.05,
+            spawnChance: 1,
+            sparkChance: 0.1,
+            sparkDist: 10,
+            sparkSize: 2,
+            baseLight: 20,
+            addedLight: 10,
+            shadowToTimePropMult: 3,
+            baseLightInputMultiplier: 0.01,
+            addedLightInputMultiplier: 0.02,
+            repaintAlpha: 0.04,
+            hueChange: 0.1
+        };
+
+        function size() {
+            var cell = cvs.parentElement;
+            var rect = cell.getBoundingClientRect();
+            dpr = Math.min(window.devicePixelRatio, 1.5);
+            w = rect.width;
+            h = rect.height;
+            cvs.width = w * dpr;
+            cvs.height = h * dpr;
+            ctx = cvs.getContext('2d');
+            ctx.scale(dpr, dpr);
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, w, h);
+            dieX = w / 2 / opts.len;
+            dieY = h / 2 / opts.len;
+            lines = [];
+        }
+
+        function Line() { this.reset(); }
+        Line.prototype.reset = function() {
+            this.x = 0; this.y = 0;
+            this.addedX = 0; this.addedY = 0;
+            this.rad = 0;
+            this.lightInputMultiplier = opts.baseLightInputMultiplier + opts.addedLightInputMultiplier * Math.random();
+            this.color = 'hsl(hue,100%,light%)'.replace('hue', tick * opts.hueChange);
+            this.cumulativeTime = 0;
+            this.beginPhase();
+        };
+        Line.prototype.beginPhase = function() {
+            this.x += this.addedX;
+            this.y += this.addedY;
+            this.time = 0;
+            this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
+            this.rad += baseRad * (Math.random() < 0.5 ? 1 : -1);
+            this.addedX = Math.cos(this.rad);
+            this.addedY = Math.sin(this.rad);
+            if (Math.random() < opts.dieChance || this.x > dieX || this.x < -dieX || this.y > dieY || this.y < -dieY)
+                this.reset();
+        };
+        Line.prototype.step = function() {
+            ++this.time; ++this.cumulativeTime;
+            if (this.time >= this.targetTime) this.beginPhase();
+            var prop = this.time / this.targetTime,
+                wave = Math.sin(prop * Math.PI / 2),
+                x = this.addedX * wave,
+                y = this.addedY * wave;
+            ctx.shadowBlur = prop * opts.shadowToTimePropMult;
+            ctx.fillStyle = ctx.shadowColor = this.color.replace('light', opts.baseLight + opts.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier));
+            ctx.fillRect(w / 2 + (this.x + x) * opts.len, h / 2 + (this.y + y) * opts.len, 2, 2);
+            if (Math.random() < opts.sparkChance)
+                ctx.fillRect(
+                    w / 2 + (this.x + x) * opts.len + Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) - opts.sparkSize / 2,
+                    h / 2 + (this.y + y) * opts.len + Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) - opts.sparkSize / 2,
+                    opts.sparkSize, opts.sparkSize);
+        };
+
+        size();
+
+        return {
+            size: size,
+            step: function() {
+                if (!ctx) return;
+                ++tick;
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = 'rgba(0,0,0,' + opts.repaintAlpha + ')';
+                ctx.fillRect(0, 0, w, h);
+                ctx.globalCompositeOperation = 'lighter';
+                if (lines.length < opts.count && Math.random() < opts.spawnChance)
+                    lines.push(new Line());
+                lines.forEach(function(l) { l.step(); });
+            }
+        };
+    }
+
+    ids.forEach(function(id, i) {
+        var cvs = document.getElementById(id);
+        if (cvs) instances.push(createInstance(cvs, i));
+    });
+
+    var running = false;
+    var hexLastFrame = 0;
+    function loop() {
+        if (!running) return;
+        requestAnimationFrame(loop);
+        var now = performance.now();
+        if (now - hexLastFrame < 33) return; // ~30fps
+        hexLastFrame = now;
+        instances.forEach(function(inst) { inst.step(); });
+    }
+
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                if (!running) { running = true; loop(); }
+            } else { running = false; }
+        });
+    }, { threshold: 0.1 });
+    obs.observe(stack);
+
+    onResizeDebounced(function() {
+        instances.forEach(function(inst) { inst.size(); });
+    });
+})();
+</script>
+
+<!-- Flow section: constellation bg + SVG path drawing -->
+<script>
+(function() {
+    /* ---- Constellation background ---- */
+    var cvs = document.getElementById('flowConstellation');
+    var section = document.getElementById('journey');
+    if (!cvs || !section) return;
+
+    var ctx = cvs.getContext('2d');
+    var dots = [];
+    var W, H, dpr;
+
+    function sizeCanvas() {
+        var rect = section.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio, 1.5);
+        W = rect.width;
+        H = rect.height;
+        cvs.width = W * dpr;
+        cvs.height = H * dpr;
+        cvs.style.width = W + 'px';
+        cvs.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initDots() {
+        dots = [];
+        var count = Math.min(20, Math.floor(W * H / 20000));
+        for (var i = 0; i < count; i++) {
+            dots.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: 1 + Math.random() * 1.5,
+                a: 0.15 + Math.random() * 0.35,
+                dx: (Math.random() - 0.5) * 0.15,
+                dy: (Math.random() - 0.5) * 0.1,
+                color: Math.random() > 0.7 ? 'rgba(245,158,11,' : 'rgba(64,216,255,'
+            });
+        }
+    }
+
+    sizeCanvas();
+    initDots();
+
+    var running = false;
+    var constLastFrame = 0;
+    function draw() {
+        if (!running) return;
+        requestAnimationFrame(draw);
+        var now = performance.now();
+        if (now - constLastFrame < 33) return; // ~30fps
+        constLastFrame = now;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Draw dots
+        for (var i = 0; i < dots.length; i++) {
+            var d = dots[i];
+            d.x += d.dx;
+            d.y += d.dy;
+            if (d.x < 0) d.x = W;
+            if (d.x > W) d.x = 0;
+            if (d.y < 0) d.y = H;
+            if (d.y > H) d.y = 0;
+
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+            ctx.fillStyle = d.color + d.a + ')';
+            ctx.fill();
+        }
+
+        // Draw connections — batched single path for performance
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'rgba(64,216,255,0.08)';
+        ctx.beginPath();
+        var connDist = 18000;
+        for (var j = 0; j < dots.length; j++) {
+            for (var k = j + 1; k < dots.length; k++) {
+                var dx = dots[j].x - dots[k].x;
+                var dy = dots[j].y - dots[k].y;
+                var dist = dx * dx + dy * dy;
+                if (dist < connDist) {
+                    ctx.moveTo(dots[j].x, dots[j].y);
+                    ctx.lineTo(dots[k].x, dots[k].y);
+                }
+            }
+        }
+        ctx.stroke();
+    }
+
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                if (!running) { running = true; draw(); }
+            } else { running = false; }
+        });
+    }, { threshold: 0.05 });
+    obs.observe(section);
+
+    onResizeDebounced(function() {
+        sizeCanvas();
+        initDots();
+    });
+
+    /* ---- Elbow connectors between cards and pill labels ---- */
+    var elbowSvg = document.getElementById('flowElbowSvg');
+    var elbowNs = 'http://www.w3.org/2000/svg';
+
+    function getOffsetRelativeTo(el, ancestor) {
+        var x = 0, y = 0, w = el.offsetWidth, h = el.offsetHeight;
+        var cur = el;
+        while (cur && cur !== ancestor) {
+            x += cur.offsetLeft;
+            y += cur.offsetTop;
+            cur = cur.offsetParent;
+        }
+        return { left: x, top: y, width: w, height: h };
+    }
+
+    function drawElbows() {
+        if (window.innerWidth < 900) { elbowSvg.innerHTML = ''; return; }
+
+        var sw = section.offsetWidth;
+        var sh = section.scrollHeight;
+        elbowSvg.setAttribute('viewBox', '0 0 ' + sw + ' ' + sh);
+        elbowSvg.style.width = sw + 'px';
+        elbowSvg.style.height = sh + 'px';
+        elbowSvg.innerHTML = '';
+
+        var cards = [
+            document.getElementById('fn1'),
+            document.getElementById('fn2'),
+            document.getElementById('fn3'),
+            document.getElementById('fn4')
+        ];
+        var pills = [
+            document.getElementById('fpl1'),
+            document.getElementById('fpl2'),
+            document.getElementById('fpl3')
+        ];
+
+        var colors = ['rgba(64,216,255,0.3)', 'rgba(64,216,255,0.3)', 'rgba(245,158,11,0.3)'];
+        var dotColors = ['rgba(64,216,255,0.6)', 'rgba(64,216,255,0.6)', 'rgba(245,158,11,0.6)'];
+
+        for (var i = 0; i < pills.length; i++) {
+            var cardAbove = cards[i];
+            var cardBelow = cards[i + 1];
+            var pill = pills[i];
+            if (!cardAbove || !cardBelow || !pill) continue;
+
+            var caPos = getOffsetRelativeTo(cardAbove, section);
+            var cbPos = getOffsetRelativeTo(cardBelow, section);
+            var plPos = getOffsetRelativeTo(pill.parentElement, section);
+
+            // Card above: bottom center
+            var ax = caPos.left + caPos.width / 2;
+            var ay = caPos.top + caPos.height;
+
+            // Pill: center
+            var px = plPos.left + plPos.width / 2;
+            var py = plPos.top + plPos.height / 2;
+
+            // Card below: top center
+            var bx = cbPos.left + cbPos.width / 2;
+            var by = cbPos.top;
+
+            // Segment 1: card above bottom -> pill center
+            // Go straight down from card, then 90° turn to pill x, then straight down to pill y
+            var midY1 = ay + (py - ay) * 0.5;
+            var d1 = 'M ' + ax + ' ' + ay
+                    + ' L ' + ax + ' ' + midY1
+                    + ' L ' + px + ' ' + midY1
+                    + ' L ' + px + ' ' + (py - 14);
+
+            // Segment 2: pill center -> card below top
+            // Go straight down from pill, then 90° turn to card x, then straight down to card
+            var midY2 = (py + 14) + (by - py - 14) * 0.5;
+            var d2 = 'M ' + px + ' ' + (py + 14)
+                    + ' L ' + px + ' ' + midY2
+                    + ' L ' + bx + ' ' + midY2
+                    + ' L ' + bx + ' ' + by;
+
+            // Draw path 1
+            var p1 = document.createElementNS(elbowNs, 'path');
+            p1.setAttribute('d', d1);
+            p1.setAttribute('stroke', colors[i]);
+            p1.setAttribute('stroke-width', '1.5');
+            p1.setAttribute('stroke-dasharray', '6 4');
+            p1.setAttribute('stroke-linecap', 'round');
+            p1.setAttribute('fill', 'none');
+            elbowSvg.appendChild(p1);
+
+            // Draw path 2
+            var p2 = document.createElementNS(elbowNs, 'path');
+            p2.setAttribute('d', d2);
+            p2.setAttribute('stroke', colors[i]);
+            p2.setAttribute('stroke-width', '1.5');
+            p2.setAttribute('stroke-dasharray', '6 4');
+            p2.setAttribute('stroke-linecap', 'round');
+            p2.setAttribute('fill', 'none');
+            elbowSvg.appendChild(p2);
+
+            // Dots at card endpoints and pill
+            var dotPositions = [
+                [ax, ay],
+                [px, py - 14],
+                [px, py + 14],
+                [bx, by]
+            ];
+            for (var d = 0; d < dotPositions.length; d++) {
+                var dot = document.createElementNS(elbowNs, 'circle');
+                dot.setAttribute('cx', dotPositions[d][0]);
+                dot.setAttribute('cy', dotPositions[d][1]);
+                dot.setAttribute('r', '3.5');
+                dot.setAttribute('fill', dotColors[i]);
+                elbowSvg.appendChild(dot);
+            }
+        }
+    }
+
+    setTimeout(drawElbows, 800);
+    onResizeDebounced(drawElbows);
+    setTimeout(drawElbows, 2500);
+})();
+</script>
+
+<div class="beat-vignette" id="beatVignette"></div>
+<script>
+// Audio toggle only — loader handles starting playback
+(function() {
+    var btn = document.getElementById('audioToggle');
+    var iconOff = document.getElementById('audioIconOff');
+    var iconOn = document.getElementById('audioIconOn');
+    var audio = document.getElementById('bgMusic');
+    var muted = false;
+
+    btn.addEventListener('click', function() {
+        // If audio isn't playing yet, start it
+        if (audio.paused) {
+            audio.volume = 0.13;
+            audio.play().then(function() {
+                iconOff.style.display = 'none';
+                iconOn.style.display = 'block';
+                btn.classList.add('audio-active');
+            }).catch(function() {});
+            return;
+        }
+        if (!muted) {
+            muted = true;
+            audio.volume = 0;
+            iconOff.style.display = 'block';
+            iconOn.style.display = 'none';
+            btn.classList.remove('audio-active');
+        } else {
+            muted = false;
+            audio.volume = 0.13;
+            iconOff.style.display = 'none';
+            iconOn.style.display = 'block';
+            btn.classList.add('audio-active');
+        }
+    });
+})();
+</script>
+
+<!-- Mobile fix: adjust audio toggle position based on nav scroll state -->
+<script>
+(function() {
+    var nav = document.getElementById('nav');
+    var audioToggle = document.getElementById('audioToggle');
+    if (!nav || !audioToggle) return;
+
+    // On mobile, keep audio button positioned under the hamburger
+    var isMobile = window.matchMedia('(max-width: 768px)');
+    function updateAudioPos() {
+        if (!isMobile.matches) return;
+        var navH = nav.getBoundingClientRect().height;
+        audioToggle.style.top = (navH + 8) + 'px';
+    }
+
+    // Update on scroll (nav shrinks when scrolled)
+    window.addEventListener('scroll', updateAudioPos, { passive: true });
+    // Update on resize
+    window.addEventListener('resize', updateAudioPos);
+    // Initial
+    updateAudioPos();
+})();
+</script>
+</body>
+</html>
