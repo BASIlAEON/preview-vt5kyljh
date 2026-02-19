@@ -26,7 +26,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior removed — causes teleport stutter with discrete wheel */
 }
 
 
@@ -1267,7 +1267,7 @@ body {
 
 .showcase-wrapper {
     position: relative;
-    height: 350vh; /* reduced: exit showcase sooner after dive-in */
+    height: 500vh; /* increased: finer scroll granularity for smooth showcase */
     background:
         radial-gradient(ellipse 80% 60% at 50% 30%, rgba(64, 216, 255, 0.06) 0%, transparent 60%),
         radial-gradient(ellipse 60% 50% at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 55%),
@@ -1311,7 +1311,6 @@ body {
     position: absolute;
     z-index: 2;
     text-align: center;
-    transition: opacity 0.3s ease, transform 0.3s ease;
     will-change: opacity, transform;
 }
 
@@ -1383,7 +1382,6 @@ body {
     justify-content: center;
     padding: 40px;
     will-change: transform, opacity;
-    transition: opacity 0.15s ease-out;
 }
 
 .slide-title {
@@ -4764,7 +4762,6 @@ body {
     pointer-events: none;
     opacity: 0;
     background: radial-gradient(ellipse at center, transparent 50%, rgba(64, 216, 255, 0.12) 100%);
-    transition: opacity 0.15s ease-out;
 }
 
 
