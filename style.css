@@ -492,23 +492,7 @@ body {
 
 
 /* ---- Dive-In finale slide ---- */
-.showcase-slide-divein {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 16px;
-    min-width: 420px;
-    padding: 60px 48px;
-}
 
-.divein-title {
-    font-size: 5rem !important;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    line-height: 1.1;
-}
 .flow-section {
     position: relative;
     overflow: hidden;
@@ -1102,23 +1086,7 @@ body {
 
 
 /* ---- Dive-In finale slide ---- */
-.showcase-slide-divein {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 16px;
-    min-width: 420px;
-    padding: 60px 48px;
-}
 
-.divein-title {
-    font-size: 5rem !important;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    line-height: 1.1;
-}
 .flow-section {
         padding: 80px 0 60px;
     }
@@ -1142,161 +1110,17 @@ body {
 
 /* ---- HORIZONTAL SCROLL SHOWCASE ---- */
 
-.showcase-wrapper {
-    position: relative;
-    height: 500vh; /* increased: finer scroll granularity for smooth showcase */
-    background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(64, 216, 255, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 55%),
-        var(--bg-dark);
-}
-
-.showcase-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* Floating background keywords */
-.showcase-keywords {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
 
-.skw {
-    position: absolute;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.03);
-    white-space: nowrap;
-    user-select: none;
-    will-change: transform;
-    transition: none;
-}
 
 /* Intro text */
-.showcase-intro {
-    position: absolute;
-    z-index: 2;
-    text-align: center;
-    will-change: opacity, transform;
-}
 
-.showcase-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.15;
-    margin-bottom: 32px;
-}
-
-.showcase-scroll-hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.showcase-mouse {
-    width: 24px;
-    height: 38px;
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    border-radius: 12px;
-    position: relative;
-}
-
-.showcase-mouse-dot {
-    width: 4px;
-    height: 4px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 8px;
-    transform: translateX(-50%);
-    animation: showcaseMouseScroll 2s ease-in-out infinite;
-}
-
-@keyframes showcaseMouseScroll {
-    0%, 100% { transform: translateY(8px); opacity: 1; }
-    50% { transform: translateY(22px); opacity: 0.3; }
-}
 
 /* Card track */
-.showcase-track {
-    display: flex;
-    gap: 400px;
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    will-change: transform;
-    padding: 0 10vw;
-    z-index: 1;
-}
 
-.showcase-slide {
-    flex-shrink: 0;
-    width: 60vw;
-    min-width: 400px;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px;
-    will-change: transform, opacity;
-}
-
-.slide-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.slide-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(16px, 2vw, 22px);
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 0.5px;
-    max-width: 500px;
-}
 
 /* Responsive */
-@media (max-width: 768px) {
-    .showcase-wrapper {
-        height: 420vh;
-    }
-    .showcase-track {
-        gap: 80px;
-    }
-    .skw {
-        font-size: clamp(2rem, 6vw, 4rem);
-    }
-}
-
-
-/* ---- DEVICE MOCKUPS (showcase section) ---- */
 
 
 /* ─── LAPTOP ─── */
@@ -3353,147 +3177,18 @@ body {
 /* ---- VST 3D Sphere (Volumetric Structure Theory slide) ---- */
 /* VST layout override moved to layout variations section */
 
-.vst-canvas-wrap {
-    flex-shrink: 0;
-    width: 420px;
-    height: 420px;
-    position: relative;
-    pointer-events: none;
-    margin: -40px;
-}
-
-.vst-canvas-wrap canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-}
-
-.vst-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .showcase-slide-vst {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .vst-canvas-wrap {
-        width: 240px;
-        height: 240px;
-    }
-}
 
 /* ---- Optical Matrix (honeycomb light trails) ---- */
-.showcase-slide-optical {
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-}
 
-/* replaced by hex-stack */
-
-/* replaced by hex-cvs */
-
-.optical-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .showcase-slide-optical {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
 
 /* ---- Layout Variations: break up the repetitive pattern ---- */
 
 /* Slide 2 (VST): side-by-side row layout */
-.showcase-slide-vst {
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-}
 
 /* Slide 3 (Shield): centered text only (animation removed) */
-.showcase-slide-shield {
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
 
 /* Slide 4 (Autonomy): centered typographic statement */
-.showcase-slide-autonomy {
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    position: relative;
-}
 
-.autonomy-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--accent-gold, #f59e0b);
-    opacity: 0.7;
-    margin-bottom: 12px;
-}
-
-.showcase-slide-autonomy .slide-title {
-    font-size: clamp(52px, 8vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -3px;
-}
-
-.autonomy-divider {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent, #40d8ff), transparent);
-    margin: 20px auto;
-}
-
-.showcase-slide-autonomy .slide-sub {
-    max-width: 360px;
-}
-
-.autonomy-tags {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.auto-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    padding: 6px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(4px);
-}
-
-@media (max-width: 768px) {
-    .showcase-slide-autonomy .slide-title {
-        font-size: clamp(36px, 10vw, 52px);
-        letter-spacing: -1px;
-    }
-    .autonomy-tags {
-        gap: 8px;
-    }
-    .auto-tag {
-        font-size: 10px;
-        padding: 4px 12px;
-    }
-}
 
 /* ---- 3-Column DNA Layout ---- */
 .dna-layout {
@@ -3686,67 +3381,12 @@ body {
 
 /* Reuse existing visual sizes */
 
-.vshow-visual .vst-canvas-wrap {
-    width: 400px;
-    height: 400px;
-}
-
-
-@media (max-width: 768px) {
-    .vshow-row,
-    .vshow-visual .vst-canvas-wrap {
-        width: 280px;
-        height: 280px;
-    }
-
-}
 
 /* ---- 5 Honeycomb Hex Canvases (2-1-2 stack) ---- */
-.hex-stack {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    pointer-events: none;
-}
 
-.hex-stack-row {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-}
 
 /* Offset middle row to nest into the gap */
-.hex-stack-mid {
-    margin-top: -28px;
-    margin-bottom: -28px;
-}
 
-.hex-cell {
-    width: 130px;
-    height: 150px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    overflow: hidden;
-    position: relative;
-}
-
-.hex-cvs {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .hex-cell {
-        width: 90px;
-        height: 104px;
-    }
-    .hex-stack-mid {
-        margin-top: -20px;
-        margin-bottom: -20px;
-    }
-}
 
 /* ---- Audio toggle button ---- */
 .audio-toggle {
@@ -4158,16 +3798,6 @@ header:not(.perf-visible)::after {
 }
 
 /* === ROUND 2: GPU-accelerate key scroll elements === */
-.showcase-slide {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-.showcase-track {
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
 
 
 /* === ROUND 3: Rive section contain === */
@@ -4183,9 +3813,6 @@ header:not(.perf-visible)::after {
     -webkit-backdrop-filter: none !important;
 }
 /* Showcase cards: use contain for each card */
-.showcase-slide {
-    contain: layout style paint;
-}
 
 
 /* ============================================================
@@ -4389,19 +4016,7 @@ header:not(.perf-visible)::after {
 /* --- FIX 4: General layout/overflow fixes --- */
 /* Showcase slides — remove min-width that causes horizontal overflow */
 @media (max-width: 768px) {
-    .showcase-slide {
-        min-width: 280px;
-        width: 85vw;
-        padding: 24px;
-    }
 
-    .slide-title {
-        font-size: clamp(28px, 7vw, 48px);
-    }
-
-    .slide-sub {
-        font-size: clamp(14px, 3.5vw, 18px);
-    }
 
     /* Prevent horizontal overflow on body */
     body {
@@ -4425,16 +4040,6 @@ header:not(.perf-visible)::after {
 }
 
 /* Very small phones */
-@media (max-width: 380px) {
-    .showcase-slide {
-        min-width: 240px;
-        padding: 20px;
-    }
-
-    .slide-title {
-        font-size: 24px;
-    }
-}
 
 
 /* --- FIX 5: Hide accordion navigation arrows (click slides directly) --- */
