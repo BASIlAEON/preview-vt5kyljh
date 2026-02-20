@@ -1151,7 +1151,7 @@ loader.addEventListener('click', function() {
   if (!gl) return;
 
   function resize() {
-    const d = Math.min(window.devicePixelRatio || 1, 1.5);
+    const d = 1; // DPR 1.0 — fullscreen shader doesn't need retina resolution
     canvas.width = innerWidth * d;
     canvas.height = innerHeight * d;
     gl.viewport(0, 0, canvas.width, canvas.height);
@@ -1174,14 +1174,14 @@ loader.addEventListener('click', function() {
       vec2 r = u_res;
       vec2 p = (FC * 2.0 - r) / r.y;
       vec3 c = vec3(0.0);
-      for (float i = 0.0; i < 20.0; i++) {
+      for (float i = 0.0; i < 12.0; i++) {
         float a = i / 1.5 + t * 0.5;
         vec2 q = p;
         q.x = q.x + sin(q.y * 19.0 + t * 2.0 + i) *
               29.0 * smoothstep(0.0, -2.0, q.y);
         float d = length(q - vec2(cos(a), sin(a)) *
                      (0.4 * smoothstep(0.0, 0.5, -q.y)));
-        c = c + vec3(0.10, 0.25, 0.45) * (0.032 / d);
+        c = c + vec3(0.10, 0.25, 0.45) * (0.05 / d);
       }
       vec3 col = c * c + vec3(0.01, 0.02, 0.04);
       gl_FragColor = vec4(col, 1.0);
@@ -1232,6 +1232,7 @@ loader.addEventListener('click', function() {
       requestAnimationFrame(draw);
       var now = performance.now();
       if (now - heroLastFrame < 33) return; // ~30fps cap
+      if (typeof _isScrolling !== 'undefined' && _isScrolling) return; // pause during scroll
       heroLastFrame = now;
       const t = (now - start) * 0.001;
       gl.uniform2f(u_res, canvas.width, canvas.height);
@@ -1258,6 +1259,15 @@ loader.addEventListener('click', function() {
   }
 })();
 
+
+// Global scroll-active flag — canvases pause during scroll to free GPU for compositing
+var _isScrolling = false;
+var _scrollTimer = null;
+window.addEventListener('scroll', function() {
+    _isScrolling = true;
+    clearTimeout(_scrollTimer);
+    _scrollTimer = setTimeout(function() { _isScrolling = false; }, 150);
+}, { passive: true });
 
 // Lenis — deferred since script loads with defer
 window.addEventListener('load', function() {
@@ -1468,14 +1478,13 @@ new AccordionSlider();
   const ctx = canvas.getContext('2d');
   
   function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     var w = window.innerWidth;
     var h = window.innerHeight;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
+    canvas.width = w;
+    canvas.height = h;
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
   resize();
   onResizeDebounced(resize);
@@ -1523,6 +1532,7 @@ new AccordionSlider();
     requestAnimationFrame(animate);
     var now = performance.now();
     if (now - _lightLastFrame < 33) return; // ~30fps cap
+    if (typeof _isScrolling !== 'undefined' && _isScrolling) return; // pause during scroll
     _lightLastFrame = now;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
@@ -1585,14 +1595,13 @@ new AccordionSlider();
 
     function sizeCanvas() {
         var rect = section.getBoundingClientRect();
-        dpr = Math.min(window.devicePixelRatio, 1.5);
         W = rect.width;
         H = rect.height;
-        cvs.width = W * dpr;
-        cvs.height = H * dpr;
+        cvs.width = W;
+        cvs.height = H;
         cvs.style.width = W + 'px';
         cvs.style.height = H + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
 
     function initDots() {
@@ -1621,6 +1630,7 @@ new AccordionSlider();
         requestAnimationFrame(draw);
         var now = performance.now();
         if (now - constLastFrame < 33) return; // ~30fps
+        if (typeof _isScrolling !== 'undefined' && _isScrolling) return; // pause during scroll
         constLastFrame = now;
 
         ctx.clearRect(0, 0, W, H);
