@@ -1487,8 +1487,13 @@ new AccordionSlider();
   }
 
   var _lightningRunning = true;
+  var _lightLastFrame = 0;
   function animate() {
     if (!_lightningRunning) return;
+    requestAnimationFrame(animate);
+    var now = performance.now();
+    if (now - _lightLastFrame < 33) return; // ~30fps cap
+    _lightLastFrame = now;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Randomly spawn bolts
@@ -1522,7 +1527,6 @@ new AccordionSlider();
       ctx.restore();
     }
     
-    requestAnimationFrame(animate);
   }
   animate();
 
