@@ -1090,71 +1090,6 @@ body {
 }
 
 
-/* ---- HORIZONTAL SCROLL SHOWCASE ---- */
-
-
-/* Floating background keywords */
-
-
-/* Intro text */
-
-
-/* Card track */
-
-
-/* Responsive */
-
-
-/* ─── LAPTOP ─── */
-
-
-/* ─── PHONE ─── */
-
-
-/* ─── PLACEHOLDER SCREENS ─── */
-
-/* Nav bar */
-
-
-/* Optical Matrix screen */
-
-/* VST screen */
-
-/* Quantum screen */
-
-/* Autonomy screen */
-
-
-/* Wallet phone */
-
-
-/* Governance screen */
-
-
-/* Notification phone */
-
-
-/* Security screen */
-
-
-@keyframes shieldSpin {
-    to { transform: rotate(360deg); }
-}
-
-
-/* Key manager phone */
-
-
-/* DeFi / Ecosystem screen */
-
-
-/* Staking phone */
-
-
-/* Responsive */
-@media (max-width: 768px) {
-}
-
 
 /* ---- SECTION BACKGROUND VARIETY ---- */
 
@@ -2374,62 +2309,6 @@ body {
 }
 
 
-/* ---- INTRO SECTION — between hero and about ---- */
-
-
-.intro-subtitle.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-.intro-stats.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-@media (max-width: 768px) {
-}
-
-/* ---- HERO TEXT — Minimal Institutional ---- */
-
-.hero-text.token-visible {
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-
-@keyframes heroTextReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(12px);
-        filter: blur(6px);
-    }
-    100% {
-        opacity: 0.85;
-        transform: translateY(0);
-        filter: blur(0px);
-    }
-}
-
-
-@keyframes heroSubReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(8px);
-        filter: blur(4px);
-    }
-    100% {
-        opacity: 0.75;
-        transform: translateY(0);
-        filter: blur(0px);
-    }
-}
-
-@media (max-width: 768px) {
-
-}
 
 
 /* ---- HERO BRAND — VALORIUM X glowing charge-up apparition ---- */
@@ -2573,15 +2452,6 @@ body {
     }
 }
 
-/* ---- HERO CYLINDER TEXT — 3D curved wall behind the sun ---- */
-
-.hero-text.token-visible .hero-cylinder {
-    animation: heroTextReveal 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
-}
-
-
-@media (max-width: 768px) {
-}
 
 
 /* ---- HEARTBEAT PULSE KEYFRAMES ---- */
@@ -2966,14 +2836,6 @@ body {
         var(--bg-card) 100%
     );
 }
-.gradient-blur-3d > div,
-.gradient-blur-3d::before,
-.gradient-blur-3d::after {
-    display: none;
-}
-
-
-/* backdrop-filter layers removed — display:none makes them dead code */
 
 /* Content overlay — transparent, text sits on glass blur */
 .mc3d-content {
@@ -3065,21 +2927,6 @@ body {
 }
 
 
-/* ---- VST 3D Sphere (Volumetric Structure Theory slide) ---- */
-/* VST layout override moved to layout variations section */
-
-
-/* ---- Optical Matrix (honeycomb light trails) ---- */
-
-
-/* ---- Layout Variations: break up the repetitive pattern ---- */
-
-/* Slide 2 (VST): side-by-side row layout */
-
-/* Slide 3 (Shield): centered text only (animation removed) */
-
-/* Slide 4 (Autonomy): centered typographic statement */
-
 
 /* ---- 3-Column DNA Layout ---- */
 .dna-layout {
@@ -3162,11 +3009,9 @@ body {
     align-items: center;
     position: relative;
     box-shadow:
-        0 0 25px rgba(64, 216, 255, 0.15),
-        0 0 60px rgba(64, 216, 255, 0.10),
-        0 0 120px rgba(64, 216, 255, 0.06),
-        0 0 200px rgba(64, 216, 255, 0.03),
-        0 10px 40px rgba(0, 0, 0, 0.7);
+        0 0 20px rgba(64, 216, 255, 0.12),
+        0 0 50px rgba(64, 216, 255, 0.06),
+        0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
 .dna-container .helix-visual {
@@ -3267,17 +3112,6 @@ body {
     }
 }
 
-/* ---- VERTICAL SHOWCASE ---- */
-
-
-/* Reuse existing visual sizes */
-
-
-/* ---- 5 Honeycomb Hex Canvases (2-1-2 stack) ---- */
-
-
-/* Offset middle row to nest into the gap */
-
 
 /* ---- Audio toggle button ---- */
 .audio-toggle {
@@ -3313,17 +3147,6 @@ body {
     display: block;
 }
 
-/* ---- Beat-reactive vignette ---- */
-.beat-vignette {
-    position: fixed;
-    inset: 0;
-    z-index: 9997;
-    pointer-events: none;
-    opacity: 0;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(64, 216, 255, 0.12) 100%);
-    will-change: opacity;
-    contain: strict;
-}
 
 
 /* ---- QUANTUM-PROOF SECTION ---- */
@@ -3613,10 +3436,6 @@ body {
     animation-play-state: paused !important;
 }
 
-/* Reduce paint cost on fixed vignette when not active */
-.beat-vignette:not(.beat-active) {
-    will-change: auto;
-}
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
@@ -3969,9 +3788,6 @@ header:not(.perf-visible)::after {
 /* === Containment for bottom sections — isolate paint/layout === */
 .accordion-slider .slide {
     contain: layout paint;
-}
-.miner-card-3d {
-    contain: layout style;
 }
 .flow-node {
     contain: layout style;
