@@ -1812,18 +1812,27 @@ new AccordionSlider();
 
     // On mobile, keep audio button positioned under the hamburger
     var isMobile = window.matchMedia('(max-width: 768px)');
+    var _audioPosRaf = false;
     function updateAudioPos() {
         if (!isMobile.matches) return;
-        var navH = nav.getBoundingClientRect().height;
-        audioToggle.style.top = (navH + 8) + 'px';
+        if (_audioPosRaf) return;
+        _audioPosRaf = true;
+        requestAnimationFrame(function() {
+            _audioPosRaf = false;
+            var navH = nav.getBoundingClientRect().height;
+            audioToggle.style.top = (navH + 8) + 'px';
+        });
     }
 
-    // Update on scroll (nav shrinks when scrolled)
+    // Update on scroll (nav shrinks when scrolled) — RAF throttled
     window.addEventListener('scroll', updateAudioPos, { passive: true });
     // Update on resize
     window.addEventListener('resize', updateAudioPos);
-    // Initial
-    updateAudioPos();
+    // Initial (direct, no RAF needed)
+    if (isMobile.matches) {
+        var navH = nav.getBoundingClientRect().height;
+        audioToggle.style.top = (navH + 8) + 'px';
+    }
 })();
 </script>
 </body>
