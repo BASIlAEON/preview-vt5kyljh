@@ -1649,7 +1649,7 @@ body {
     justify-content: center;
     transition: background 0.3s ease, transform 0.3s ease;
     z-index: 4;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter removed — GPU perf */
 }
 
 .slider-container .nav-prev {
@@ -2292,9 +2292,9 @@ body {
         right: -100%;
         width: 300px;
         height: 100vh;
-        background: linear-gradient(180deg, rgba(8, 10, 20, 0.97), rgba(5, 8, 18, 0.99));
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        background: linear-gradient(180deg, rgba(8, 10, 20, 0.98), rgba(5, 8, 18, 0.99));
+        /* backdrop-filter removed — GPU perf */
+        /* -webkit-backdrop-filter removed */
         flex-direction: column;
         padding: 90px 28px 32px;
         gap: 4px;
@@ -2811,10 +2811,6 @@ body {
     0%, 100% { opacity: 0.7; }
     50% { opacity: 1; }
 }
-    50% {
-        box-shadow: 0 0 30px rgba(245, 158, 11, 0.12), 0 0 60px rgba(245, 158, 11, 0.06);
-    }
-}
 
 
 /* Solar callout with gold tint */
@@ -3026,63 +3022,7 @@ body {
 }
 
 
-.gradient-blur-3d::before {
-    content: "";
-    z-index: 1;
-    backdrop-filter: blur(0.5px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p1), rgba(0,0,0,1) var(--p2), rgba(0,0,0,1) var(--p3), rgba(0,0,0,0) var(--p4));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p1), rgba(0,0,0,1) var(--p2), rgba(0,0,0,1) var(--p3), rgba(0,0,0,0) var(--p4));
-}
-
-.gradient-blur-3d > div:nth-of-type(1) {
-    z-index: 2;
-    backdrop-filter: blur(1px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p2), rgba(0,0,0,1) var(--p3), rgba(0,0,0,1) var(--p4), rgba(0,0,0,0) var(--p5));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p2), rgba(0,0,0,1) var(--p3), rgba(0,0,0,1) var(--p4), rgba(0,0,0,0) var(--p5));
-}
-
-.gradient-blur-3d > div:nth-of-type(2) {
-    z-index: 3;
-    backdrop-filter: blur(2px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p3), rgba(0,0,0,1) var(--p4), rgba(0,0,0,1) var(--p5), rgba(0,0,0,0) var(--p6));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p3), rgba(0,0,0,1) var(--p4), rgba(0,0,0,1) var(--p5), rgba(0,0,0,0) var(--p6));
-}
-
-.gradient-blur-3d > div:nth-of-type(3) {
-    z-index: 4;
-    backdrop-filter: blur(4px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p4), rgba(0,0,0,1) var(--p5), rgba(0,0,0,1) var(--p6), rgba(0,0,0,0) var(--p7));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p4), rgba(0,0,0,1) var(--p5), rgba(0,0,0,1) var(--p6), rgba(0,0,0,0) var(--p7));
-}
-
-.gradient-blur-3d > div:nth-of-type(4) {
-    z-index: 5;
-    backdrop-filter: blur(8px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p5), rgba(0,0,0,1) var(--p6), rgba(0,0,0,1) var(--p7), rgba(0,0,0,0) var(--p8));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p5), rgba(0,0,0,1) var(--p6), rgba(0,0,0,1) var(--p7), rgba(0,0,0,0) var(--p8));
-}
-
-.gradient-blur-3d > div:nth-of-type(5) {
-    z-index: 6;
-    backdrop-filter: blur(10px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p6), rgba(0,0,0,1) var(--p7), rgba(0,0,0,1) var(--p8), rgba(0,0,0,0) var(--p9));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p6), rgba(0,0,0,1) var(--p7), rgba(0,0,0,1) var(--p8), rgba(0,0,0,0) var(--p9));
-}
-
-.gradient-blur-3d > div:nth-of-type(6) {
-    z-index: 7;
-    backdrop-filter: blur(14px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p7), rgba(0,0,0,1) var(--p8), rgba(0,0,0,1) var(--p9));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p7), rgba(0,0,0,1) var(--p8), rgba(0,0,0,1) var(--p9));
-}
-
-.gradient-blur-3d::after {
-    content: "";
-    z-index: 8;
-    backdrop-filter: blur(20px);
-    mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p8), rgba(0,0,0,1) var(--p9));
-    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,0) var(--p8), rgba(0,0,0,1) var(--p9));
-}
+/* backdrop-filter layers removed — display:none makes them dead code */
 
 /* Content overlay — transparent, text sits on glass blur */
 .mc3d-content {
@@ -3771,19 +3711,7 @@ header:not(.perf-visible)::after {
     animation-play-state: running !important;
 }
 
-/* === ROUND 2: Replace gradient-blur backdrop-filters with simple gradient === */
-/* The 8-layer stacked backdrop-filter is the #1 GPU killer */
-.gradient-blur-3d::before,
-.gradient-blur-3d > div:nth-of-type(1),
-.gradient-blur-3d > div:nth-of-type(2),
-.gradient-blur-3d > div:nth-of-type(3),
-.gradient-blur-3d > div:nth-of-type(4),
-.gradient-blur-3d > div:nth-of-type(5),
-.gradient-blur-3d > div:nth-of-type(6),
-.gradient-blur-3d::after {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
+/* backdrop-filter overrides removed — dead code already cleaned up above */
 /* Replace with a single solid gradient overlay (same visual, zero GPU cost) */
 .mc3d-glass {
     background: linear-gradient(to top, var(--bg-card, #0a0f1a) 0%, var(--bg-card, #0a0f1a) 30%, transparent 100%) !important;
@@ -4045,4 +3973,21 @@ header:not(.perf-visible)::after {
 /* --- FIX 5: Hide accordion navigation arrows (click slides directly) --- */
 .slider-container .navigation-arrows {
     display: none;
+}
+
+/* === ACCESSIBILITY: Respect reduced-motion preference === */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .dna .link div,
+    .qp-ring,
+    .scroll-line,
+    .fn-blink,
+    .loader-enter-text {
+        animation: none !important;
+    }
 }
