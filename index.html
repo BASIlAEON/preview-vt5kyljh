@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1771390557">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
     <script src="https://unpkg.com/@rive-app/webgl2@2.33.1"></script>
 </head>
 <body>
@@ -354,6 +354,15 @@
     }, { threshold: revealThreshold });
 
     revealObserver.observe(section);
+
+    // Safety fallback: ensure section is revealed after 5s even if observer fails
+    setTimeout(function() {
+        if (!revealed) {
+            revealed = true;
+            section.classList.add('rive-revealed');
+            if (riveInstance) playRive(riveInstance);
+        }
+    }, 5000);
 
     // --- Init Rive ---
     function initRive() {
@@ -1229,6 +1238,11 @@ loader.addEventListener('click', function() {
       gl.uniform1f(u_time, t);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
+    // Pause WebGL when tab hidden
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) { heroRunning = false; }
+      else if (!heroRunning) { heroRunning = true; draw(); }
+    });
     var heroObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) { if (!heroRunning) { heroRunning = true; draw(); } }
@@ -1237,23 +1251,35 @@ loader.addEventListener('click', function() {
     }, { threshold: 0.05 });
     heroObs.observe(canvas);
     draw();
-  } catch (e) { console.error('WebGL shader error:', e); }
+  } catch (e) {
+    console.error('WebGL shader error:', e);
+    // Fallback: dark gradient background so hero isn't blank
+    canvas.style.background = 'radial-gradient(ellipse at 50% 80%, #0a1628 0%, #060610 100%)';
+  }
 })();
 
 
-if (typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({
+// Lenis — deferred since script loads with defer
+window.addEventListener('load', function() {
+    if (typeof Lenis === 'undefined') return;
+    var lenis = new Lenis({
         lerp: 0.08,
         wheelMultiplier: 1.8,
         touchMultiplier: 2,
         smoothWheel: true,
     });
+    var lenisActive = true;
+    document.addEventListener('visibilitychange', function() {
+        lenisActive = !document.hidden;
+        if (lenisActive) requestAnimationFrame(lenisRaf);
+    });
     function lenisRaf(time) {
+        if (!lenisActive) return;
         lenis.raf(time);
         requestAnimationFrame(lenisRaf);
     }
     requestAnimationFrame(lenisRaf);
-}
+});
 
 // Shared debounce for resize handlers
 var _resizeCallbacks = [];
@@ -1442,10 +1468,14 @@ new AccordionSlider();
   const ctx = canvas.getContext('2d');
   
   function resize() {
-    const h = window.innerHeight;
-    const w = window.innerWidth;
-    canvas.width = w;
-    canvas.height = h;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   resize();
   onResizeDebounced(resize);
@@ -1507,19 +1537,10 @@ new AccordionSlider();
       
       ctx.save();
       ctx.globalAlpha = b.life * 0.8;
-      ctx.strokeStyle = 'rgba(150, 220, 255, 0.9)';
+      ctx.strokeStyle = 'rgba(180, 230, 255, 0.9)';
       ctx.lineWidth = b.width;
-      ctx.shadowColor = 'rgba(0, 180, 255, 0.8)';
-      ctx.shadowBlur = 8;
-      ctx.beginPath();
-      ctx.moveTo(b.x1, b.y1);
-      drawBolt(b.x1, b.y1, b.x2, b.y2, 4);
-      ctx.stroke();
-      
-      // Bright core
-      ctx.strokeStyle = 'rgba(220, 240, 255, 0.7)';
-      ctx.lineWidth = b.width * 0.4;
-      ctx.shadowBlur = 4;
+      ctx.shadowColor = 'rgba(0, 180, 255, 0.6)';
+      ctx.shadowBlur = 5;
       ctx.beginPath();
       ctx.moveTo(b.x1, b.y1);
       drawBolt(b.x1, b.y1, b.x2, b.y2, 4);
@@ -1529,6 +1550,12 @@ new AccordionSlider();
     
   }
   animate();
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { _lightningRunning = false; }
+    else if (!_lightningRunning) { _lightningRunning = true; animate(); }
+  });
 
   // Pause lightning when hero is off-screen
   var _lightObs = new IntersectionObserver(function(entries) {
@@ -1633,6 +1660,10 @@ new AccordionSlider();
         ctx.stroke();
     }
 
+    // Pause constellation when tab hidden
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) { running = false; }
+    });
     var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
             if (e.isIntersecting) {
