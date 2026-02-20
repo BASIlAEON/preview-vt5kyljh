@@ -1263,7 +1263,7 @@ loader.addEventListener('click', function() {
 window.addEventListener('load', function() {
     if (typeof Lenis === 'undefined') return;
     var lenis = new Lenis({
-        lerp: 0.08,
+        lerp: 0.12,
         wheelMultiplier: 1.8,
         touchMultiplier: 2,
         smoothWheel: true,
@@ -1344,7 +1344,7 @@ window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 50);
         if (scrollInd && !scrollIndHidden && window.scrollY > 30) {
             scrollIndHidden = true;
-            scrollInd.style.opacity = '0';
+            scrollInd.classList.add('hidden');
         }
     });
 }, { passive: true });
@@ -1845,29 +1845,17 @@ new AccordionSlider();
     var audioToggle = document.getElementById('audioToggle');
     if (!nav || !audioToggle) return;
 
-    // On mobile, keep audio button positioned under the hamburger
-    var isMobile = window.matchMedia('(max-width: 768px)');
-    var _audioPosRaf = false;
-    function updateAudioPos() {
+    // On mobile, audio button follows nav height via CSS class (no scroll layout reads)
+    // Nav only has 2 states: default (padding 16px) and scrolled (padding 10px).
+    // We sync a class on audioToggle when nav.scrolled changes, CSS handles top position.
+    var isMobile = window.matchMedia("(max-width: 768px)");
+    function syncAudioPos() {
         if (!isMobile.matches) return;
-        if (_audioPosRaf) return;
-        _audioPosRaf = true;
-        requestAnimationFrame(function() {
-            _audioPosRaf = false;
-            var navH = nav.getBoundingClientRect().height;
-            audioToggle.style.top = (navH + 8) + 'px';
-        });
+        audioToggle.classList.toggle("nav-compact", nav.classList.contains("scrolled"));
     }
-
-    // Update on scroll (nav shrinks when scrolled) — RAF throttled
-    window.addEventListener('scroll', updateAudioPos, { passive: true });
-    // Update on resize
-    window.addEventListener('resize', updateAudioPos);
-    // Initial (direct, no RAF needed)
-    if (isMobile.matches) {
-        var navH = nav.getBoundingClientRect().height;
-        audioToggle.style.top = (navH + 8) + 'px';
-    }
+    var _audioObs = new MutationObserver(syncAudioPos);
+    _audioObs.observe(nav, { attributes: true, attributeFilter: ["class"] });
+    syncAudioPos();
 })();
 </script>
 </body>
